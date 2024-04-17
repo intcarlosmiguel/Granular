@@ -93,7 +93,10 @@ void intersecao_circulo_reta(struct reta *RETA,struct particula *p,double *defor
         *deformacao = p->raio - distance_ponto_ponto(&Central,&p->posicao);
         relative(&p->posicao,&Central, DEFORMACAO);
     } else{
-        printf("Deu problema!");
+        printf("Deu problema na Colisão com reta!\n");
+        printf("Particula: (%f,%f)\n",p->posicao.x,p->posicao.y);
+        printf("Particula: (%f,%f,%f)\n",RETA->a,RETA->b,RETA->c);
+        printf("%f\n",discriminante);
         exit(0);
     }
 }
@@ -127,7 +130,7 @@ void force_plano(struct particula *particula,struct reta *RETA){
     mult(&ROTATE,forca_tangencial);
     mult(&NORMAL,forca_normal);
     sum(&NORMAL,&ROTATE,&FORCE);
-    sum(&FORCE,&particula->Force,&FORCE);
+    sum(&FORCE,&particula->Force,&particula->Force);
 }
 
 void force(struct particula *particula1, struct particula *particula2){
@@ -144,9 +147,7 @@ void force(struct particula *particula1, struct particula *particula2){
 
         double Young = (particula1->Young*particula2->Young)/(particula1->Young+particula2->Young);
 
-        double Raio_effetivo = (particula2->raio < 1000*particula1->raio)? (particula1->raio*particula2->raio)/(particula1->raio+particula2->raio) :particula1->raio;
-
-        double Massa =(particula2->massa < 1000*particula1->massa)?(particula1->massa*particula2->massa)/(particula1->massa+particula2->massa) : particula1->massa;
+        double Raio_effetivo =(particula1->raio*particula2->raio)/(particula1->raio+particula2->raio) ;
 
         double A = particula1->A + particula2->A;
 
@@ -177,8 +178,8 @@ void force(struct particula *particula1, struct particula *particula2){
         mult(&NORMAL,forca_normal);
         sum(&NORMAL,&ROTATE,&FORCE);
     }
-    sum(&FORCE,&particula1->Force,&FORCE);
-    sum(&FORCE,&particula2->Force,&FORCE);
+    sum(&FORCE,&particula1->Force,&particula1->Force);
+    sum(&FORCE,&particula2->Force,&particula2->Force);
 }
 
 double distance_ponto_reta(struct reta* RETA,struct VECTOR *posicao){
