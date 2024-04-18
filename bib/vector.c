@@ -50,3 +50,12 @@ void rotate(struct VECTOR *v,struct VECTOR *rot,int check){
         break;
     }
 }
+
+void reflect_vector(struct VECTOR *v, struct VECTOR *normal,struct VECTOR *ref) {
+    double prod = dot(v, normal);
+    mult(normal,2 * prod);
+
+    relative(v, normal,ref);
+    
+    mult(normal,1/(2 * prod));
+}

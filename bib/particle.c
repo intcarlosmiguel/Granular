@@ -152,7 +152,7 @@ void force(struct particula *particula1, struct particula *particula2){
 
         double Raio_effetivo =(particula1->raio*particula2->raio)/(particula1->raio+particula2->raio) ;
 
-        double A = particula1->A + particula2->A;
+        double A = 0.5*(particula1->A + particula2->A);
 
         double atrito = (particula1->atrito > particula2->atrito)? particula1->atrito : particula2->atrito;
 

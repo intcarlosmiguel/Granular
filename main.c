@@ -27,6 +27,7 @@ void main(){
     struct VECTOR* F = (struct VECTOR*) malloc(N*sizeof(struct VECTOR));
     struct particula PAREDE;
     struct VECTOR CM;
+    struct VECTOR NORMAL;
     CM.x = 0;
     CM.y = 0;
     struct reta* retas = (struct reta*) malloc(6*sizeof(struct reta));
@@ -84,7 +85,6 @@ void main(){
         }
         
     }
-    printf("%f %f\n",CM.x,CM.y);
     for ( i = 0; i < N; i++){
         //printf("%d %f - %f\n",i,particulas[i].posicao.x,particulas[i].posicao.y);
         
@@ -96,39 +96,48 @@ void main(){
     while (t < tempo_total){
         for ( i = 0; i < N; i++){
             if(particulas[i].posicao.y<0) continue;
+            if(i == 0)printf("%f\t%f\n",particulas[i].posicao.x,particulas[i].posicao.y);
             if(i == 0)fprintf(file,"%f\t%f\n",particulas[i].posicao.x,particulas[i].posicao.y);
             for ( j = i+1; j < N; j++){
                 if(particulas[j].posicao.y<0) continue;
-                if(distance_ponto_ponto(&particulas[i].posicao,&particulas[j].posicao)<= particulas[i].raio + particulas[j].raio)force(&particulas[i],&particulas[j]);
+                if(distance_ponto_ponto(&particulas[i].posicao,&particulas[j].posicao)<= particulas[i].raio + particulas[j].raio) force(&particulas[i],&particulas[j]);
             }
             //if(i == 380)printf("2 - Particula: %d - (%f,%f) - (%f,%f)\n",i,particulas[i].Force.x,particulas[i].Force.y,particulas[i].posicao.x,particulas[i].posicao.y);
-            update_position(&particulas[i],&anteriores[i],&F[i],dt);
-            //if(i == 380)printf("3 - Particula: %d - (%f,%f)\n",i,anteriores[i].x,anteriores[i].y);
             for ( j = 0; j < 6; j++){
                 //if(i == 380)printf("\nReta: %d - (%f,%f,%f)\n",j,retas[j].a,retas[j].b,retas[j].c);
                 if(entre(&retas[j],&particulas[i].posicao)){
-                    if(!acima(&retas[j],&particulas[i].posicao,&CM)) reflect_reta(&particulas[i].posicao,&retas[j],&particulas[i].posicao);
+                    if(!acima(&retas[j],&particulas[i].posicao,&CM)){
+                        reflect_reta(&particulas[i].posicao,&retas[j],&particulas[i].posicao);
+                    }
+                    if(i == 0) printf("%d\n",acima(&retas[j],&particulas[i].posicao,&CM));
                     if(distance_ponto_reta(&retas[j],&particulas[i].posicao) < particulas[i].raio){
+                        NORMAL.x = retas[j].a;
+                        NORMAL.y = retas[j].b;
+                        mult(&NORMAL,norma(&NORMAL));
                         //if(i == 380) printf("Colidiu! %f - (%f,%f) - (%f,%f)\n",distance_ponto_reta(&retas[j],&particulas[i].posicao),particulas[i].posicao.x,particulas[i].posicao.y,retas[j].fim.x,retas[j].fim.y);
                         force_plano(&particulas[i],&retas[j]); 
+                        //reflect_vector(&particulas[i].velocidade,&NORMAL,&particulas[i].velocidade);
+                        //reflect_vector(&anteriores[i],&NORMAL,&anteriores[i]);
                     }
                 }
                 //if(i == 380)printf("4 - Particula: %d - (%f,%f) - (%f,%f)\n",i,particulas[i].Force.x,particulas[i].Force.y,particulas[i].posicao.x,particulas[i].posicao.y);
             }
+            update_position(&particulas[i],&anteriores[i],&F[i],dt);
+            //if(i == 380)printf("3 - Particula: %d - (%f,%f)\n",i,anteriores[i].x,anteriores[i].y);
             
         }
         for ( i = 0; i < N; i++){
             particulas[i].posicao.x = anteriores[i].x;
             particulas[i].posicao.y = anteriores[i].y;
-            particulas[i].velocidade.x = dt*F[i].x;
-            particulas[i].velocidade.y = dt*F[i].y - GRAVIDADE;
+            particulas[i].velocidade.x = dt*F[i].x/particulas[i].massa;
+            particulas[i].velocidade.y = dt*F[i].y/particulas[i].massa - GRAVIDADE*dt;
         }
 
         t += dt;
-        printf("%f\n",t);
+        //printf("%f\n",t);
     }
     for ( i = 0; i < N; i++){
-        printf("%d %f - %f\n",i,particulas[i].posicao.x,particulas[i].posicao.y);
+        //printf("%d %f - %f\n",i,particulas[i].posicao.x,particulas[i].posicao.y);
         
     }
 }
