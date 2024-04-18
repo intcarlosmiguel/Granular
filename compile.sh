@@ -1,2 +1,2 @@
-gcc main.c particle.c obstaculo.c vector.c -o main -lm -O3
+gcc main.c bib/particle.c bib/vector.c -o main -lm -O3
 ./main

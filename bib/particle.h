@@ -39,7 +39,7 @@ double maximo(double a,double b);
 double minimo(double a,double b);
 bool entre(struct reta *RETA,struct VECTOR *point);
 void reflect_reta(struct VECTOR *point, struct reta *RETA,struct VECTOR *reflect);
-bool acima(struct reta* RETA,struct VECTOR *posicao);
+bool acima(struct reta* RETA,struct VECTOR *posicao,struct VECTOR *CM);
 void init_coef(struct reta* RETA,double x1,double y1,double x2, double y2);
 
 double distance_ponto_ponto(struct VECTOR *posicao1,struct VECTOR *posicao2);

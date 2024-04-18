@@ -1,10 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include "vector.h"
-#include "particle.h"
-//#include "obstaculo.h"
-double PI = 3.14159265359;
+#include "bib/vector.h"
+#include "bib/particle.h"
 const double GRAVIDADE = 9.80665;
 
 void update_position(struct particula *p,struct VECTOR *anterior,struct VECTOR *F,double dt){
@@ -19,14 +17,18 @@ void update_position(struct particula *p,struct VECTOR *anterior,struct VECTOR *
 }
 
 void main(){
+    double PI = (4.0 * atan(1.0));
     int colunas = 20;
     int linhas = 20;
     int N = colunas*linhas,i,j;
-    double tempo_total = 200, dt = 0.25,t = 0;
+    double tempo_total = 500, dt = 0.25/2,t = 0;
     struct particula* particulas = (struct particula*) malloc(N*sizeof(struct particula));
     struct VECTOR* anteriores = (struct VECTOR*) malloc(N*sizeof(struct VECTOR));
     struct VECTOR* F = (struct VECTOR*) malloc(N*sizeof(struct VECTOR));
     struct particula PAREDE;
+    struct VECTOR CM;
+    CM.x = 0;
+    CM.y = 0;
     struct reta* retas = (struct reta*) malloc(6*sizeof(struct reta));
     double angulo = 30;
     double y0 = 9.8 + 154*tan(PI*angulo/180);
@@ -76,35 +78,42 @@ void main(){
             //printf("%f - %f\n",particulas[c].posicao.x,particulas[c].posicao.y);
             anteriores[c].x = particulas[c].posicao.x;
             anteriores[c].y = particulas[c].posicao.y;
+            CM.x += particulas[c].posicao.x;
+            CM.y += particulas[c].posicao.y;
             c++;
         }
         
     }
+    printf("%f %f\n",CM.x,CM.y);
     for ( i = 0; i < N; i++){
         //printf("%d %f - %f\n",i,particulas[i].posicao.x,particulas[i].posicao.y);
         
     }
-
+    FILE *file = fopen("./example.txt","w");
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo.");
+    }
     while (t < tempo_total){
         for ( i = 0; i < N; i++){
-            //if(i == 0)printf("Particula: %d - (%f,%f)\n",i,particulas[i].posicao.x,particulas[i].posicao.y);
             if(particulas[i].posicao.y<0) continue;
+            if(i == 0)fprintf(file,"%f\t%f\n",particulas[i].posicao.x,particulas[i].posicao.y);
             for ( j = i+1; j < N; j++){
                 if(particulas[j].posicao.y<0) continue;
-                if(distance_ponto_ponto(&particulas[i].posicao,&particulas[j].posicao)<= particulas[i].raio + particulas[j].raio) {
-                    if(i == 0)printf("Entrou %d\n",j);
-                    force(&particulas[i],&particulas[j]);
-                }
+                if(distance_ponto_ponto(&particulas[i].posicao,&particulas[j].posicao)<= particulas[i].raio + particulas[j].raio)force(&particulas[i],&particulas[j]);
             }
-            //if(i == 0)printf("Particula: %d - (%f,%f)\n",i,particulas[i].Force.x,particulas[i].Force.y);
+            //if(i == 380)printf("2 - Particula: %d - (%f,%f) - (%f,%f)\n",i,particulas[i].Force.x,particulas[i].Force.y,particulas[i].posicao.x,particulas[i].posicao.y);
             update_position(&particulas[i],&anteriores[i],&F[i],dt);
-            //if(i == 0)printf("Particula: %d - (%f,%f)\n",i,anteriores[i].x,anteriores[i].y);
+            //if(i == 380)printf("3 - Particula: %d - (%f,%f)\n",i,anteriores[i].x,anteriores[i].y);
             for ( j = 0; j < 6; j++){
+                //if(i == 380)printf("\nReta: %d - (%f,%f,%f)\n",j,retas[j].a,retas[j].b,retas[j].c);
                 if(entre(&retas[j],&particulas[i].posicao)){
-                    if(!acima(&retas[j],&particulas[i].posicao)) reflect_reta(&particulas[i].posicao,&retas[j],&particulas[i].posicao);
-
-                    if(distance_ponto_reta(&retas[j],&particulas[i].posicao) < particulas[i].raio)force_plano(&particulas[i],&retas[j]); 
-                } 
+                    if(!acima(&retas[j],&particulas[i].posicao,&CM)) reflect_reta(&particulas[i].posicao,&retas[j],&particulas[i].posicao);
+                    if(distance_ponto_reta(&retas[j],&particulas[i].posicao) < particulas[i].raio){
+                        //if(i == 380) printf("Colidiu! %f - (%f,%f) - (%f,%f)\n",distance_ponto_reta(&retas[j],&particulas[i].posicao),particulas[i].posicao.x,particulas[i].posicao.y,retas[j].fim.x,retas[j].fim.y);
+                        force_plano(&particulas[i],&retas[j]); 
+                    }
+                }
+                //if(i == 380)printf("4 - Particula: %d - (%f,%f) - (%f,%f)\n",i,particulas[i].Force.x,particulas[i].Force.y,particulas[i].posicao.x,particulas[i].posicao.y);
             }
             
         }
@@ -118,5 +127,8 @@ void main(){
         t += dt;
         printf("%f\n",t);
     }
-
+    for ( i = 0; i < N; i++){
+        printf("%d %f - %f\n",i,particulas[i].posicao.x,particulas[i].posicao.y);
+        
+    }
 }
