@@ -5,13 +5,20 @@
 #include "bib/particle.h"
 const double GRAVIDADE = 9.80665;
 
-void update_position(struct particula *p,struct VECTOR *anterior,struct VECTOR *F,double dt){
-    //p->velocidade.x += dt*p->Force.x;
-    //p->velocidade.y += dt*p->Force.y - GRAVIDADE;
-    anterior->x = (2 - p->Force.x)*p->posicao.x - (1 - p->Force.x)*anterior->x + dt*dt*p->Force.x/p->massa;
-    anterior->y = (2 - p->Force.y - p->massa*GRAVIDADE)*p->posicao.y - (1 - p->Force.y- p->massa*GRAVIDADE)*anterior->y + (p->Force.y/p->massa - GRAVIDADE)*dt*dt;
-    F->x = p->Force.x;
-    F->y = p->Force.y;
+void update_position(struct particula *p,struct VECTOR *anterior,double dt){
+    double valor;
+    p->velocidade.x += dt*p->Force.x;
+    p->velocidade.y += dt*p->Force.y - GRAVIDADE*dt;
+    valor = 2*p->posicao.x - anterior->x + dt*dt*p->Force.x/p->massa;
+
+    anterior->x = p->posicao.x;
+    p->posicao.x = valor;
+
+    valor= 2*p->posicao.y - anterior->y + (p->Force.y/p->massa - GRAVIDADE)*dt*dt;
+
+    anterior->y = p->posicao.y;
+    p->posicao.y = valor;
+
     p->Force.x = 0;
     p->Force.y = 0;
 }
@@ -49,16 +56,16 @@ void main(){
 
     for ( i = 0; i < 6; i++){
         retas[i].A = 0.01;
-        retas[i].atrito = 0.05;
+        retas[i].atrito = 0.;
         retas[i].gamma = 0.05;
     }
 
     for ( i = 0; i < N; i++){
 
-        particulas[i].A = 0;
+        particulas[i].A = 0.5;
         particulas[i].aceleracao_angular = 0;
         particulas[i].angular = 0;
-        particulas[i].atrito = 1;
+        particulas[i].atrito = 0;
         particulas[i].gamma = 1;
         particulas[i].massa = 1;
         particulas[i].raio = 7.5;
@@ -85,59 +92,61 @@ void main(){
         }
         
     }
-    for ( i = 0; i < N; i++){
-        //printf("%d %f - %f\n",i,particulas[i].posicao.x,particulas[i].posicao.y);
+    /* for ( i = 0; i < N; i++){
+        printf("%d %f - %f\n",i,particulas[i].posicao.x,particulas[i].posicao.y);
         
-    }
+    } */
     FILE *file = fopen("./example.txt","w");
     if (file == NULL) {
         printf("Erro ao abrir o arquivo.");
     }
     while (t < tempo_total){
+
         for ( i = 0; i < N; i++){
+
+            if(i == 0)fprintf(file,"%f\t%f\n",particulas[i].posicao.x,particulas[i].posicao.y);
             if(particulas[i].posicao.y<0) continue;
             if(i == 0)printf("%f\t%f\n",particulas[i].posicao.x,particulas[i].posicao.y);
-            if(i == 0)fprintf(file,"%f\t%f\n",particulas[i].posicao.x,particulas[i].posicao.y);
             for ( j = i+1; j < N; j++){
                 if(particulas[j].posicao.y<0) continue;
                 if(distance_ponto_ponto(&particulas[i].posicao,&particulas[j].posicao)<= particulas[i].raio + particulas[j].raio) force(&particulas[i],&particulas[j]);
             }
-            //if(i == 380)printf("2 - Particula: %d - (%f,%f) - (%f,%f)\n",i,particulas[i].Force.x,particulas[i].Force.y,particulas[i].posicao.x,particulas[i].posicao.y);
+            //if(i == 0)printf("2 - Particula: %d - (%f,%f) - (%f,%f)\n",i,particulas[i].Force.x,particulas[i].Force.y,particulas[i].posicao.x,particulas[i].posicao.y);
             for ( j = 0; j < 6; j++){
-                //if(i == 380)printf("\nReta: %d - (%f,%f,%f)\n",j,retas[j].a,retas[j].b,retas[j].c);
+                //if(i == 0)printf("\nReta: %d - (%f,%f,%f)\n",j,retas[j].a,retas[j].b,retas[j].c);
                 if(entre(&retas[j],&particulas[i].posicao)){
                     if(!acima(&retas[j],&particulas[i].posicao,&CM)){
                         reflect_reta(&particulas[i].posicao,&retas[j],&particulas[i].posicao);
                     }
-                    if(i == 0) printf("%d\n",acima(&retas[j],&particulas[i].posicao,&CM));
+                    //if(i == 0) printf("%d\n",acima(&retas[j],&particulas[i].posicao,&CM));
                     if(distance_ponto_reta(&retas[j],&particulas[i].posicao) < particulas[i].raio){
                         NORMAL.x = retas[j].a;
                         NORMAL.y = retas[j].b;
-                        mult(&NORMAL,norma(&NORMAL));
-                        //if(i == 380) printf("Colidiu! %f - (%f,%f) - (%f,%f)\n",distance_ponto_reta(&retas[j],&particulas[i].posicao),particulas[i].posicao.x,particulas[i].posicao.y,retas[j].fim.x,retas[j].fim.y);
-                        force_plano(&particulas[i],&retas[j]); 
+                        mult(&NORMAL,1/norma(&NORMAL));
+                        //if(i == 0) printf("Colidiu! %f - (%f,%f) - (%f,%f)\n",distance_ponto_reta(&retas[j],&particulas[i].posicao),particulas[i].posicao.x,particulas[i].posicao.y,retas[j].fim.x,retas[j].fim.y);
+
+                        force_plano(&particulas[i],&retas[j]);
+                        double cos = dot(&NORMAL,&particulas[i].velocidade)/norma(&particulas[i].velocidade);
+                        particulas[i].velocidade.x = particulas[i].velocidade.x*sqrt(1 - pow(cos,2));
+                        particulas[i].velocidade.y = - particulas[i].velocidade.y*cos;
+                        /* cos = dot(&NORMAL,&particulas[i].posicao)/norma(&particulas[i].posicao);
+                        particulas[i].posicao.x = particulas[i].posicao.x*sqrt(1 - pow(cos,2));
+                        particulas[i].posicao.y = -particulas[i].posicao.y*cos; */
+
                         //reflect_vector(&particulas[i].velocidade,&NORMAL,&particulas[i].velocidade);
                         //reflect_vector(&anteriores[i],&NORMAL,&anteriores[i]);
                     }
                 }
-                //if(i == 380)printf("4 - Particula: %d - (%f,%f) - (%f,%f)\n",i,particulas[i].Force.x,particulas[i].Force.y,particulas[i].posicao.x,particulas[i].posicao.y);
+                //if(i == 0)printf("4 - Particula: %d - (%f,%f)\n",i,anteriores[i].x,anteriores[i].y);
+                //if(i == 0)printf("4 - Particula: %d - (%f,%f) - (%f,%f)\n",i,particulas[i].Force.x,particulas[i].Force.y,particulas[i].posicao.x,particulas[i].posicao.y);
             }
-            update_position(&particulas[i],&anteriores[i],&F[i],dt);
-            //if(i == 380)printf("3 - Particula: %d - (%f,%f)\n",i,anteriores[i].x,anteriores[i].y);
+            
+            //if(i == 0)printf("Posição: %d - (%f,%f)\n",i,anteriores[i].x,anteriores[i].y);
             
         }
-        for ( i = 0; i < N; i++){
-            particulas[i].posicao.x = anteriores[i].x;
-            particulas[i].posicao.y = anteriores[i].y;
-            particulas[i].velocidade.x = dt*F[i].x/particulas[i].massa;
-            particulas[i].velocidade.y = dt*F[i].y/particulas[i].massa - GRAVIDADE*dt;
-        }
+        for ( i = 0; i < N; i++) update_position(&particulas[i],&anteriores[i],dt);
 
         t += dt;
-        //printf("%f\n",t);
-    }
-    for ( i = 0; i < N; i++){
-        //printf("%d %f - %f\n",i,particulas[i].posicao.x,particulas[i].posicao.y);
-        
+        printf("%f\n",t);
     }
 }
