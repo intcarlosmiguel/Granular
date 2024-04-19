@@ -93,7 +93,10 @@ void intersecao_circulo_reta(struct reta *RETA,struct particula *p,double *defor
             exit(0);
         }
         *deformacao = p->raio - distance_ponto_ponto(&Central,&p->posicao);
+        printf("Deformacao: ");
+
         relative(&p->posicao,&Central, DEFORMACAO);
+        print_vector(DEFORMACAO);
     } else{
         printf("Deu problema na Colisão com reta!\n");
         printf("Particula: (%f,%f)\n",p->posicao.x,p->posicao.y);
@@ -114,12 +117,13 @@ void force_plano(struct particula *particula,struct reta *RETA){
 
     intersecao_circulo_reta(RETA,particula,&deformacao,&NORMAL);
     mult(&NORMAL,1/(particula->raio - deformacao));
+    
 
-    double dv = -dot(&NORMAL,&particula->velocidade);
-    double forca_normal = 4/3*sqrt(particula->raio)*particula->Young*sqrt(deformacao)*(deformacao + particula->A*dv);
+    double dv = dot(&NORMAL,&particula->velocidade);
+    double forca_normal = 4/3*sqrt(particula->raio)*particula->Young*sqrt(deformacao)*(deformacao + 0.5*(particula->A+RETA->A)*dv);
 
     double velocidade_tangencial = dv + particula->raio*particula->angular;
-
+    printf("Normal: %f %f",dv,forca_normal);
     if(forca_normal < 0) forca_normal = 0;
 
     double forca_tangencial = -particula->gamma *velocidade_tangencial;
@@ -129,9 +133,10 @@ void force_plano(struct particula *particula,struct reta *RETA){
     vel.x = 0;
     vel.y = 0;
     struct VECTOR ROTATE = find_tangente(&particula->velocidade, &vel,&NORMAL);
-        
     mult(&ROTATE,forca_tangencial);
     mult(&NORMAL,forca_normal);
+    
+    print_vector(&NORMAL);
     sum(&NORMAL,&ROTATE,&FORCE);
     sum(&FORCE,&particula->Force,&particula->Force);
 }

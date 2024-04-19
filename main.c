@@ -104,8 +104,8 @@ void main(){
 
         for ( i = 0; i < N; i++){
 
-            if(i == 0)fprintf(file,"%f\t%f\n",particulas[i].posicao.x,particulas[i].posicao.y);
             if(particulas[i].posicao.y<0) continue;
+            if(i == 0)fprintf(file,"%f\t%f\n",particulas[i].posicao.x,particulas[i].posicao.y);
             if(i == 0)printf("%f\t%f\n",particulas[i].posicao.x,particulas[i].posicao.y);
             for ( j = i+1; j < N; j++){
                 if(particulas[j].posicao.y<0) continue;
@@ -147,6 +147,6 @@ void main(){
         for ( i = 0; i < N; i++) update_position(&particulas[i],&anteriores[i],dt);
 
         t += dt;
-        printf("%f\n",t);
+        //printf("%f\n",t);
     }
 }
