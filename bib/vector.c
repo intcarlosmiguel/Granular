@@ -19,9 +19,9 @@ void relative(struct VECTOR *v1,struct VECTOR *v2, struct VECTOR *v){
     v->y = v1->y - v2->y;
 }
 
-void sum(struct VECTOR *v1,struct VECTOR *v2, struct VECTOR *v){
-    v->x = v1->x + v2->x;
-    v->y = v1->y + v2->y;
+void sum(struct VECTOR *v1,struct VECTOR *v2, struct VECTOR *resultado){
+    resultado->x = v1->x + v2->x;
+    resultado->y = v1->y + v2->y;
 }
 
 double norma(struct VECTOR *v){

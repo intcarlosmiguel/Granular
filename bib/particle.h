@@ -31,7 +31,7 @@ struct reta{
     double atrito;
     double gamma;
 };
-
+void correct(struct reta *RETA,struct particula *p,struct VECTOR *DEFORMACAO);
 
 double distance_ponto_reta(struct reta* RETA,struct VECTOR *posicao);
 void intersecao_circulo_reta(struct reta *RETA,struct particula *p,double *deformacao,struct VECTOR *DEFORMACAO);
