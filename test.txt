@@ -1,128 +1,1052 @@
-Tentou corrigir!
-(-145.000000 95.524986)
-(0.870008 1.506898)
-(-142.120008 100.513279)
+Colisão da partícula 0 com a parede 0 138.000000 0!
+Colisão da partícula 0 com a parede 1 288.000000 1!
+Colisão da partícula 0 com a parede 2 316.421810 1!
+Colisão da partícula 0 com a parede 3 529.421810 1!
+Colisão da partícula 0 com a parede 4 114.711941 1!
+Colisão da partícula 0 com a parede 5 343.288059 1!
+Colisão da partícula 1 com a parede 0 122.500000 0!
+Colisão da partícula 1 com a parede 1 272.500000 1!
+Colisão da partícula 1 com a parede 2 324.171810 1!
+Colisão da partícula 1 com a parede 3 521.671810 1!
+Colisão da partícula 1 com a parede 4 130.211941 1!
+Colisão da partícula 1 com a parede 5 327.788059 1!
+0.125000
+Colisão da partícula 0 com a parede 0 137.990000 0!
+Colisão da partícula 0 com a parede 1 287.990000 1!
+Colisão da partícula 0 com a parede 2 316.178730 1!
+Colisão da partícula 0 com a parede 3 529.168730 1!
+Colisão da partícula 0 com a parede 4 114.721941 1!
+Colisão da partícula 0 com a parede 5 343.278059 1!
+Colisão da partícula 1 com a parede 0 122.490000 0!
+Colisão da partícula 1 com a parede 1 272.490000 1!
+Colisão da partícula 1 com a parede 2 323.928730 1!
+Colisão da partícula 1 com a parede 3 521.418730 1!
+Colisão da partícula 1 com a parede 4 130.221941 1!
+Colisão da partícula 1 com a parede 5 327.778059 1!
+0.250000
+Colisão da partícula 0 com a parede 0 137.980000 0!
+Colisão da partícula 0 com a parede 1 287.980000 1!
+Colisão da partícula 0 com a parede 2 315.811610 1!
+Colisão da partícula 0 com a parede 3 528.791610 1!
+Colisão da partícula 0 com a parede 4 114.731941 1!
+Colisão da partícula 0 com a parede 5 343.268059 1!
+Colisão da partícula 1 com a parede 0 122.480000 0!
+Colisão da partícula 1 com a parede 1 272.480000 1!
+Colisão da partícula 1 com a parede 2 323.561610 1!
+Colisão da partícula 1 com a parede 3 521.041610 1!
+Colisão da partícula 1 com a parede 4 130.231941 1!
+Colisão da partícula 1 com a parede 5 327.768059 1!
+0.375000
+Colisão da partícula 0 com a parede 0 137.970000 0!
+Colisão da partícula 0 com a parede 1 287.970000 1!
+Colisão da partícula 0 com a parede 2 315.320451 1!
+Colisão da partícula 0 com a parede 3 528.290451 1!
+Colisão da partícula 0 com a parede 4 114.741941 1!
+Colisão da partícula 0 com a parede 5 343.258059 1!
+Colisão da partícula 1 com a parede 0 122.470000 0!
+Colisão da partícula 1 com a parede 1 272.470000 1!
+Colisão da partícula 1 com a parede 2 323.070451 1!
+Colisão da partícula 1 com a parede 3 520.540451 1!
+Colisão da partícula 1 com a parede 4 130.241941 1!
+Colisão da partícula 1 com a parede 5 327.758059 1!
+0.500000
+Colisão da partícula 0 com a parede 0 137.960000 0!
+Colisão da partícula 0 com a parede 1 287.960000 1!
+Colisão da partícula 0 com a parede 2 314.705251 1!
+Colisão da partícula 0 com a parede 3 527.665251 1!
+Colisão da partícula 0 com a parede 4 114.751941 1!
+Colisão da partícula 0 com a parede 5 343.248059 1!
+Colisão da partícula 1 com a parede 0 122.460000 0!
+Colisão da partícula 1 com a parede 1 272.460000 1!
+Colisão da partícula 1 com a parede 2 322.455251 1!
+Colisão da partícula 1 com a parede 3 519.915251 1!
+Colisão da partícula 1 com a parede 4 130.251941 1!
+Colisão da partícula 1 com a parede 5 327.748059 1!
+0.625000
+Colisão da partícula 0 com a parede 0 137.950000 0!
+Colisão da partícula 0 com a parede 1 287.950000 1!
+Colisão da partícula 0 com a parede 2 313.966012 1!
+Colisão da partícula 0 com a parede 3 526.916012 1!
+Colisão da partícula 0 com a parede 4 114.761941 1!
+Colisão da partícula 0 com a parede 5 343.238059 1!
+Colisão da partícula 1 com a parede 0 122.450000 0!
+Colisão da partícula 1 com a parede 1 272.450000 1!
+Colisão da partícula 1 com a parede 2 321.716012 1!
+Colisão da partícula 1 com a parede 3 519.166012 1!
+Colisão da partícula 1 com a parede 4 130.261941 1!
+Colisão da partícula 1 com a parede 5 327.738059 1!
+0.750000
+Colisão da partícula 0 com a parede 0 137.940000 0!
+Colisão da partícula 0 com a parede 1 287.940000 1!
+Colisão da partícula 0 com a parede 2 313.102733 1!
+Colisão da partícula 0 com a parede 3 526.042733 1!
+Colisão da partícula 0 com a parede 4 114.771941 1!
+Colisão da partícula 0 com a parede 5 343.228059 1!
+Colisão da partícula 1 com a parede 0 122.440000 0!
+Colisão da partícula 1 com a parede 1 272.440000 1!
+Colisão da partícula 1 com a parede 2 320.852733 1!
+Colisão da partícula 1 com a parede 3 518.292733 1!
+Colisão da partícula 1 com a parede 4 130.271941 1!
+Colisão da partícula 1 com a parede 5 327.728059 1!
+0.875000
+Colisão da partícula 0 com a parede 0 137.930000 0!
+Colisão da partícula 0 com a parede 1 287.930000 1!
+Colisão da partícula 0 com a parede 2 312.115414 1!
+Colisão da partícula 0 com a parede 3 525.045414 1!
+Colisão da partícula 0 com a parede 4 114.781941 1!
+Colisão da partícula 0 com a parede 5 343.218059 1!
+Colisão da partícula 1 com a parede 0 122.430000 0!
+Colisão da partícula 1 com a parede 1 272.430000 1!
+Colisão da partícula 1 com a parede 2 319.865414 1!
+Colisão da partícula 1 com a parede 3 517.295414 1!
+Colisão da partícula 1 com a parede 4 130.281941 1!
+Colisão da partícula 1 com a parede 5 327.718059 1!
+1.000000
+Colisão da partícula 0 com a parede 0 137.920000 0!
+Colisão da partícula 0 com a parede 1 287.920000 1!
+Colisão da partícula 0 com a parede 2 311.004055 1!
+Colisão da partícula 0 com a parede 3 523.924055 1!
+Colisão da partícula 0 com a parede 4 114.791941 1!
+Colisão da partícula 0 com a parede 5 343.208059 1!
+Colisão da partícula 1 com a parede 0 122.420000 0!
+Colisão da partícula 1 com a parede 1 272.420000 1!
+Colisão da partícula 1 com a parede 2 318.754055 1!
+Colisão da partícula 1 com a parede 3 516.174055 1!
+Colisão da partícula 1 com a parede 4 130.291941 1!
+Colisão da partícula 1 com a parede 5 327.708059 1!
+1.125000
+Colisão da partícula 0 com a parede 0 137.910000 0!
+Colisão da partícula 0 com a parede 1 287.910000 1!
+Colisão da partícula 0 com a parede 2 309.768657 1!
+Colisão da partícula 0 com a parede 3 522.678657 1!
+Colisão da partícula 0 com a parede 4 114.801941 1!
+Colisão da partícula 0 com a parede 5 343.198059 1!
+Colisão da partícula 1 com a parede 0 122.410000 0!
+Colisão da partícula 1 com a parede 1 272.410000 1!
+Colisão da partícula 1 com a parede 2 317.518657 1!
+Colisão da partícula 1 com a parede 3 514.928657 1!
+Colisão da partícula 1 com a parede 4 130.301941 1!
+Colisão da partícula 1 com a parede 5 327.698059 1!
+1.250000
+Colisão da partícula 0 com a parede 0 137.900000 0!
+Colisão da partícula 0 com a parede 1 287.900000 1!
+Colisão da partícula 0 com a parede 2 308.409218 1!
+Colisão da partícula 0 com a parede 3 521.309218 1!
+Colisão da partícula 0 com a parede 4 114.811941 1!
+Colisão da partícula 0 com a parede 5 343.188059 1!
+Colisão da partícula 1 com a parede 0 122.400000 0!
+Colisão da partícula 1 com a parede 1 272.400000 1!
+Colisão da partícula 1 com a parede 2 316.159218 1!
+Colisão da partícula 1 com a parede 3 513.559218 1!
+Colisão da partícula 1 com a parede 4 130.311941 1!
+Colisão da partícula 1 com a parede 5 327.688059 1!
+1.375000
+Colisão da partícula 0 com a parede 0 137.890000 0!
+Colisão da partícula 0 com a parede 1 287.890000 1!
+Colisão da partícula 0 com a parede 2 306.925740 1!
+Colisão da partícula 0 com a parede 3 519.815740 1!
+Colisão da partícula 0 com a parede 4 114.821941 1!
+Colisão da partícula 0 com a parede 5 343.178059 1!
+Colisão da partícula 1 com a parede 0 122.390000 0!
+Colisão da partícula 1 com a parede 1 272.390000 1!
+Colisão da partícula 1 com a parede 2 314.675740 1!
+Colisão da partícula 1 com a parede 3 512.065740 1!
+Colisão da partícula 1 com a parede 4 130.321941 1!
+Colisão da partícula 1 com a parede 5 327.678059 1!
+1.500000
+Colisão da partícula 0 com a parede 0 137.880000 0!
+Colisão da partícula 0 com a parede 1 287.880000 1!
+Colisão da partícula 0 com a parede 2 305.318221 1!
+Colisão da partícula 0 com a parede 3 518.198221 1!
+Colisão da partícula 0 com a parede 4 114.831941 1!
+Colisão da partícula 0 com a parede 5 343.168059 1!
+Colisão da partícula 1 com a parede 0 122.380000 0!
+Colisão da partícula 1 com a parede 1 272.380000 1!
+Colisão da partícula 1 com a parede 2 313.068221 1!
+Colisão da partícula 1 com a parede 3 510.448221 1!
+Colisão da partícula 1 com a parede 4 130.331941 1!
+Colisão da partícula 1 com a parede 5 327.668059 1!
+1.625000
+Colisão da partícula 0 com a parede 0 137.870000 0!
+Colisão da partícula 0 com a parede 1 287.870000 1!
+Colisão da partícula 0 com a parede 2 303.586663 1!
+Colisão da partícula 0 com a parede 3 516.456663 1!
+Colisão da partícula 0 com a parede 4 114.841941 1!
+Colisão da partícula 0 com a parede 5 343.158059 1!
+Colisão da partícula 1 com a parede 0 122.370000 0!
+Colisão da partícula 1 com a parede 1 272.370000 1!
+Colisão da partícula 1 com a parede 2 311.336663 1!
+Colisão da partícula 1 com a parede 3 508.706663 1!
+Colisão da partícula 1 com a parede 4 130.341941 1!
+Colisão da partícula 1 com a parede 5 327.658059 1!
+1.750000
+Colisão da partícula 0 com a parede 0 137.860000 0!
+Colisão da partícula 0 com a parede 1 287.860000 1!
+Colisão da partícula 0 com a parede 2 301.731065 1!
+Colisão da partícula 0 com a parede 3 514.591065 1!
+Colisão da partícula 0 com a parede 4 114.851941 1!
+Colisão da partícula 0 com a parede 5 343.148059 1!
+Colisão da partícula 1 com a parede 0 122.360000 0!
+Colisão da partícula 1 com a parede 1 272.360000 1!
+Colisão da partícula 1 com a parede 2 309.481065 1!
+Colisão da partícula 1 com a parede 3 506.841065 1!
+Colisão da partícula 1 com a parede 4 130.351941 1!
+Colisão da partícula 1 com a parede 5 327.648059 1!
+1.875000
+Colisão da partícula 0 com a parede 0 137.850000 0!
+Colisão da partícula 0 com a parede 1 287.850000 1!
+Colisão da partícula 0 com a parede 2 299.751427 1!
+Colisão da partícula 0 com a parede 3 512.601427 1!
+Colisão da partícula 0 com a parede 4 114.861941 1!
+Colisão da partícula 0 com a parede 5 343.138059 1!
+Colisão da partícula 1 com a parede 0 122.350000 0!
+Colisão da partícula 1 com a parede 1 272.350000 1!
+Colisão da partícula 1 com a parede 2 307.501427 1!
+Colisão da partícula 1 com a parede 3 504.851427 1!
+Colisão da partícula 1 com a parede 4 130.361941 1!
+Colisão da partícula 1 com a parede 5 327.638059 1!
+2.000000
+Colisão da partícula 0 com a parede 0 137.840000 0!
+Colisão da partícula 0 com a parede 1 287.840000 1!
+Colisão da partícula 0 com a parede 2 297.647749 1!
+Colisão da partícula 0 com a parede 3 510.487749 1!
+Colisão da partícula 0 com a parede 4 114.871941 1!
+Colisão da partícula 0 com a parede 5 343.128059 1!
+Colisão da partícula 1 com a parede 0 122.340000 0!
+Colisão da partícula 1 com a parede 1 272.340000 1!
+Colisão da partícula 1 com a parede 2 305.397749 1!
+Colisão da partícula 1 com a parede 3 502.737749 1!
+Colisão da partícula 1 com a parede 4 130.371941 1!
+Colisão da partícula 1 com a parede 5 327.628059 1!
+2.125000
+Colisão da partícula 0 com a parede 0 137.830000 0!
+Colisão da partícula 0 com a parede 1 287.830000 1!
+Colisão da partícula 0 com a parede 2 295.420032 1!
+Colisão da partícula 0 com a parede 3 508.250032 1!
+Colisão da partícula 0 com a parede 4 114.881941 1!
+Colisão da partícula 0 com a parede 5 343.118059 1!
+Colisão da partícula 1 com a parede 0 122.330000 0!
+Colisão da partícula 1 com a parede 1 272.330000 1!
+Colisão da partícula 1 com a parede 2 303.170032 1!
+Colisão da partícula 1 com a parede 3 500.500032 1!
+Colisão da partícula 1 com a parede 4 130.381941 1!
+Colisão da partícula 1 com a parede 5 327.618059 1!
+2.250000
+Colisão da partícula 0 com a parede 0 137.820000 0!
+Colisão da partícula 0 com a parede 1 287.820000 1!
+Colisão da partícula 0 com a parede 2 293.068274 1!
+Colisão da partícula 0 com a parede 3 505.888274 1!
+Colisão da partícula 0 com a parede 4 114.891941 1!
+Colisão da partícula 0 com a parede 5 343.108059 1!
+Colisão da partícula 1 com a parede 0 122.320000 0!
+Colisão da partícula 1 com a parede 1 272.320000 1!
+Colisão da partícula 1 com a parede 2 300.818274 1!
+Colisão da partícula 1 com a parede 3 498.138274 1!
+Colisão da partícula 1 com a parede 4 130.391941 1!
+Colisão da partícula 1 com a parede 5 327.608059 1!
+2.375000
+Colisão da partícula 0 com a parede 0 137.810000 0!
+Colisão da partícula 0 com a parede 1 287.810000 1!
+Colisão da partícula 0 com a parede 2 290.592477 1!
+Colisão da partícula 0 com a parede 3 503.402477 1!
+Colisão da partícula 0 com a parede 4 114.901941 1!
+Colisão da partícula 0 com a parede 5 343.098059 1!
+Colisão da partícula 1 com a parede 0 122.310000 0!
+Colisão da partícula 1 com a parede 1 272.310000 1!
+Colisão da partícula 1 com a parede 2 298.342477 1!
+Colisão da partícula 1 com a parede 3 495.652477 1!
+Colisão da partícula 1 com a parede 4 130.401941 1!
+Colisão da partícula 1 com a parede 5 327.598059 1!
+2.500000
+Colisão da partícula 0 com a parede 0 137.800000 0!
+Colisão da partícula 0 com a parede 1 287.800000 1!
+Colisão da partícula 0 com a parede 2 287.992639 1!
+Colisão da partícula 0 com a parede 3 500.792639 1!
+Colisão da partícula 0 com a parede 4 114.911941 1!
+Colisão da partícula 0 com a parede 5 343.088059 1!
+Colisão da partícula 1 com a parede 0 122.300000 0!
+Colisão da partícula 1 com a parede 1 272.300000 1!
+Colisão da partícula 1 com a parede 2 295.742639 1!
+Colisão da partícula 1 com a parede 3 493.042639 1!
+Colisão da partícula 1 com a parede 4 130.411941 1!
+Colisão da partícula 1 com a parede 5 327.588059 1!
+2.625000
+Colisão da partícula 0 com a parede 0 137.790000 0!
+Colisão da partícula 0 com a parede 1 287.790000 1!
+Colisão da partícula 0 com a parede 2 285.268762 1!
+Colisão da partícula 0 com a parede 3 498.058762 1!
+Colisão da partícula 0 com a parede 4 114.921941 1!
+Colisão da partícula 0 com a parede 5 343.078059 1!
+Colisão da partícula 1 com a parede 0 122.290000 0!
+Colisão da partícula 1 com a parede 1 272.290000 1!
+Colisão da partícula 1 com a parede 2 293.018762 1!
+Colisão da partícula 1 com a parede 3 490.308762 1!
+Colisão da partícula 1 com a parede 4 130.421941 1!
+Colisão da partícula 1 com a parede 5 327.578059 1!
+2.750000
+Colisão da partícula 0 com a parede 0 137.780000 0!
+Colisão da partícula 0 com a parede 1 287.780000 1!
+Colisão da partícula 0 com a parede 2 282.420845 1!
+Colisão da partícula 0 com a parede 3 495.200845 1!
+Colisão da partícula 0 com a parede 4 114.931941 1!
+Colisão da partícula 0 com a parede 5 343.068059 1!
+Colisão da partícula 1 com a parede 0 122.280000 0!
+Colisão da partícula 1 com a parede 1 272.280000 1!
+Colisão da partícula 1 com a parede 2 290.170845 1!
+Colisão da partícula 1 com a parede 3 487.450845 1!
+Colisão da partícula 1 com a parede 4 130.431941 1!
+Colisão da partícula 1 com a parede 5 327.568059 1!
+2.875000
+Colisão da partícula 0 com a parede 0 137.770000 0!
+Colisão da partícula 0 com a parede 1 287.770000 1!
+Colisão da partícula 0 com a parede 2 279.448888 1!
+Colisão da partícula 0 com a parede 3 492.218888 1!
+Colisão da partícula 0 com a parede 4 114.941941 1!
+Colisão da partícula 0 com a parede 5 343.058059 1!
+Colisão da partícula 1 com a parede 0 122.270000 0!
+Colisão da partícula 1 com a parede 1 272.270000 1!
+Colisão da partícula 1 com a parede 2 287.198888 1!
+Colisão da partícula 1 com a parede 3 484.468888 1!
+Colisão da partícula 1 com a parede 4 130.441941 1!
+Colisão da partícula 1 com a parede 5 327.558059 1!
+3.000000
+Colisão da partícula 0 com a parede 0 137.760000 0!
+Colisão da partícula 0 com a parede 1 287.760000 1!
+Colisão da partícula 0 com a parede 2 276.352891 1!
+Colisão da partícula 0 com a parede 3 489.112891 1!
+Colisão da partícula 0 com a parede 4 114.951941 1!
+Colisão da partícula 0 com a parede 5 343.048059 1!
+Colisão da partícula 1 com a parede 0 122.260000 0!
+Colisão da partícula 1 com a parede 1 272.260000 1!
+Colisão da partícula 1 com a parede 2 284.102891 1!
+Colisão da partícula 1 com a parede 3 481.362891 1!
+Colisão da partícula 1 com a parede 4 130.451941 1!
+Colisão da partícula 1 com a parede 5 327.548059 1!
+3.125000
+Colisão da partícula 0 com a parede 0 137.750000 0!
+Colisão da partícula 0 com a parede 1 287.750000 1!
+Colisão da partícula 0 com a parede 2 273.132855 1!
+Colisão da partícula 0 com a parede 3 485.882855 1!
+Colisão da partícula 0 com a parede 4 114.961941 1!
+Colisão da partícula 0 com a parede 5 343.038059 1!
+Colisão da partícula 1 com a parede 0 122.250000 0!
+Colisão da partícula 1 com a parede 1 272.250000 1!
+Colisão da partícula 1 com a parede 2 280.882855 1!
+Colisão da partícula 1 com a parede 3 478.132855 1!
+Colisão da partícula 1 com a parede 4 130.461941 1!
+Colisão da partícula 1 com a parede 5 327.538059 1!
+3.250000
+Colisão da partícula 0 com a parede 0 137.740000 0!
+Colisão da partícula 0 com a parede 1 287.740000 1!
+Colisão da partícula 0 com a parede 2 269.788778 1!
+Colisão da partícula 0 com a parede 3 482.528778 1!
+Colisão da partícula 0 com a parede 4 114.971941 1!
+Colisão da partícula 0 com a parede 5 343.028059 1!
+Colisão da partícula 1 com a parede 0 122.240000 0!
+Colisão da partícula 1 com a parede 1 272.240000 1!
+Colisão da partícula 1 com a parede 2 277.538778 1!
+Colisão da partícula 1 com a parede 3 474.778778 1!
+Colisão da partícula 1 com a parede 4 130.471941 1!
+Colisão da partícula 1 com a parede 5 327.528059 1!
+3.375000
+Colisão da partícula 0 com a parede 0 137.730000 0!
+Colisão da partícula 0 com a parede 1 287.730000 1!
+Colisão da partícula 0 com a parede 2 266.320662 1!
+Colisão da partícula 0 com a parede 3 479.050662 1!
+Colisão da partícula 0 com a parede 4 114.981941 1!
+Colisão da partícula 0 com a parede 5 343.018059 1!
+Colisão da partícula 1 com a parede 0 122.230000 0!
+Colisão da partícula 1 com a parede 1 272.230000 1!
+Colisão da partícula 1 com a parede 2 274.070662 1!
+Colisão da partícula 1 com a parede 3 471.300662 1!
+Colisão da partícula 1 com a parede 4 130.481941 1!
+Colisão da partícula 1 com a parede 5 327.518059 1!
+3.500000
+Colisão da partícula 0 com a parede 0 137.720000 0!
+Colisão da partícula 0 com a parede 1 287.720000 1!
+Colisão da partícula 0 com a parede 2 262.728505 1!
+Colisão da partícula 0 com a parede 3 475.448505 1!
+Colisão da partícula 0 com a parede 4 114.991941 1!
+Colisão da partícula 0 com a parede 5 343.008059 1!
+Colisão da partícula 1 com a parede 0 122.220000 0!
+Colisão da partícula 1 com a parede 1 272.220000 1!
+Colisão da partícula 1 com a parede 2 270.478505 1!
+Colisão da partícula 1 com a parede 3 467.698505 1!
+Colisão da partícula 1 com a parede 4 130.491941 1!
+Colisão da partícula 1 com a parede 5 327.508059 1!
+3.625000
+Colisão da partícula 0 com a parede 0 137.710000 0!
+Colisão da partícula 0 com a parede 1 287.710000 1!
+Colisão da partícula 0 com a parede 2 259.012309 1!
+Colisão da partícula 0 com a parede 3 471.722309 1!
+Colisão da partícula 0 com a parede 4 115.001941 1!
+Colisão da partícula 0 com a parede 5 342.998059 1!
+Colisão da partícula 1 com a parede 0 122.210000 0!
+Colisão da partícula 1 com a parede 1 272.210000 1!
+Colisão da partícula 1 com a parede 2 266.762309 1!
+Colisão da partícula 1 com a parede 3 463.972309 1!
+Colisão da partícula 1 com a parede 4 130.501941 1!
+Colisão da partícula 1 com a parede 5 327.498059 1!
+3.750000
+Colisão da partícula 0 com a parede 0 137.700000 0!
+Colisão da partícula 0 com a parede 1 287.700000 1!
+Colisão da partícula 0 com a parede 2 255.172073 1!
+Colisão da partícula 0 com a parede 3 467.872073 1!
+Colisão da partícula 0 com a parede 4 115.011941 1!
+Colisão da partícula 0 com a parede 5 342.988059 1!
+Colisão da partícula 1 com a parede 0 122.200000 0!
+Colisão da partícula 1 com a parede 1 272.200000 1!
+Colisão da partícula 1 com a parede 2 262.922073 1!
+Colisão da partícula 1 com a parede 3 460.122073 1!
+Colisão da partícula 1 com a parede 4 130.511941 1!
+Colisão da partícula 1 com a parede 5 327.488059 1!
+3.875000
+Colisão da partícula 0 com a parede 0 137.690000 0!
+Colisão da partícula 0 com a parede 1 287.690000 1!
+Colisão da partícula 0 com a parede 2 251.207797 1!
+Colisão da partícula 0 com a parede 3 463.897797 1!
+Colisão da partícula 0 com a parede 4 115.021941 1!
+Colisão da partícula 0 com a parede 5 342.978059 1!
+Colisão da partícula 1 com a parede 0 122.190000 0!
+Colisão da partícula 1 com a parede 1 272.190000 1!
+Colisão da partícula 1 com a parede 2 258.957797 1!
+Colisão da partícula 1 com a parede 3 456.147797 1!
+Colisão da partícula 1 com a parede 4 130.521941 1!
+Colisão da partícula 1 com a parede 5 327.478059 1!
+4.000000
+Colisão da partícula 0 com a parede 0 137.680000 0!
+Colisão da partícula 0 com a parede 1 287.680000 1!
+Colisão da partícula 0 com a parede 2 247.119482 1!
+Colisão da partícula 0 com a parede 3 459.799482 1!
+Colisão da partícula 0 com a parede 4 115.031941 1!
+Colisão da partícula 0 com a parede 5 342.968059 1!
+Colisão da partícula 1 com a parede 0 122.180000 0!
+Colisão da partícula 1 com a parede 1 272.180000 1!
+Colisão da partícula 1 com a parede 2 254.869482 1!
+Colisão da partícula 1 com a parede 3 452.049482 1!
+Colisão da partícula 1 com a parede 4 130.531941 1!
+Colisão da partícula 1 com a parede 5 327.468059 1!
+4.125000
+Colisão da partícula 0 com a parede 0 137.670000 0!
+Colisão da partícula 0 com a parede 1 287.670000 1!
+Colisão da partícula 0 com a parede 2 242.907126 1!
+Colisão da partícula 0 com a parede 3 455.577126 1!
+Colisão da partícula 0 com a parede 4 115.041941 1!
+Colisão da partícula 0 com a parede 5 342.958059 1!
+Colisão da partícula 1 com a parede 0 122.170000 0!
+Colisão da partícula 1 com a parede 1 272.170000 1!
+Colisão da partícula 1 com a parede 2 250.657126 1!
+Colisão da partícula 1 com a parede 3 447.827126 1!
+Colisão da partícula 1 com a parede 4 130.541941 1!
+Colisão da partícula 1 com a parede 5 327.458059 1!
+4.250000
+Colisão da partícula 0 com a parede 0 137.660000 0!
+Colisão da partícula 0 com a parede 1 287.660000 1!
+Colisão da partícula 0 com a parede 2 238.570731 1!
+Colisão da partícula 0 com a parede 3 451.230731 1!
+Colisão da partícula 0 com a parede 4 115.051941 1!
+Colisão da partícula 0 com a parede 5 342.948059 1!
+Colisão da partícula 1 com a parede 0 122.160000 0!
+Colisão da partícula 1 com a parede 1 272.160000 1!
+Colisão da partícula 1 com a parede 2 246.320731 1!
+Colisão da partícula 1 com a parede 3 443.480731 1!
+Colisão da partícula 1 com a parede 4 130.551941 1!
+Colisão da partícula 1 com a parede 5 327.448059 1!
+4.375000
+Colisão da partícula 0 com a parede 0 137.650000 0!
+Colisão da partícula 0 com a parede 1 287.650000 1!
+Colisão da partícula 0 com a parede 2 234.110295 1!
+Colisão da partícula 0 com a parede 3 446.760295 1!
+Colisão da partícula 0 com a parede 4 115.061941 1!
+Colisão da partícula 0 com a parede 5 342.938059 1!
+Colisão da partícula 1 com a parede 0 122.150000 0!
+Colisão da partícula 1 com a parede 1 272.150000 1!
+Colisão da partícula 1 com a parede 2 241.860295 1!
+Colisão da partícula 1 com a parede 3 439.010295 1!
+Colisão da partícula 1 com a parede 4 130.561941 1!
+Colisão da partícula 1 com a parede 5 327.438059 1!
+4.500000
+Colisão da partícula 0 com a parede 0 137.640000 0!
+Colisão da partícula 0 com a parede 1 287.640000 1!
+Colisão da partícula 0 com a parede 2 229.525820 1!
+Colisão da partícula 0 com a parede 3 442.165820 1!
+Colisão da partícula 0 com a parede 4 115.071941 1!
+Colisão da partícula 0 com a parede 5 342.928059 1!
+Colisão da partícula 1 com a parede 0 122.140000 0!
+Colisão da partícula 1 com a parede 1 272.140000 1!
+Colisão da partícula 1 com a parede 2 237.275820 1!
+Colisão da partícula 1 com a parede 3 434.415820 1!
+Colisão da partícula 1 com a parede 4 130.571941 1!
+Colisão da partícula 1 com a parede 5 327.428059 1!
+4.625000
+Colisão da partícula 0 com a parede 0 137.630000 0!
+Colisão da partícula 0 com a parede 1 287.630000 1!
+Colisão da partícula 0 com a parede 2 224.817305 1!
+Colisão da partícula 0 com a parede 3 437.447305 1!
+Colisão da partícula 0 com a parede 4 115.081941 1!
+Colisão da partícula 0 com a parede 5 342.918059 1!
+Colisão da partícula 1 com a parede 0 122.130000 0!
+Colisão da partícula 1 com a parede 1 272.130000 1!
+Colisão da partícula 1 com a parede 2 232.567305 1!
+Colisão da partícula 1 com a parede 3 429.697305 1!
+Colisão da partícula 1 com a parede 4 130.581941 1!
+Colisão da partícula 1 com a parede 5 327.418059 1!
+4.750000
+Colisão da partícula 0 com a parede 0 137.620000 0!
+Colisão da partícula 0 com a parede 1 287.620000 1!
+Colisão da partícula 0 com a parede 2 219.984750 1!
+Colisão da partícula 0 com a parede 3 432.604750 1!
+Colisão da partícula 0 com a parede 4 115.091941 1!
+Colisão da partícula 0 com a parede 5 342.908059 1!
+Colisão da partícula 1 com a parede 0 122.120000 0!
+Colisão da partícula 1 com a parede 1 272.120000 1!
+Colisão da partícula 1 com a parede 2 227.734750 1!
+Colisão da partícula 1 com a parede 3 424.854750 1!
+Colisão da partícula 1 com a parede 4 130.591941 1!
+Colisão da partícula 1 com a parede 5 327.408059 1!
+4.875000
+Colisão da partícula 0 com a parede 0 137.610000 0!
+Colisão da partícula 0 com a parede 1 287.610000 1!
+Colisão da partícula 0 com a parede 2 215.028155 1!
+Colisão da partícula 0 com a parede 3 427.638155 1!
+Colisão da partícula 0 com a parede 4 115.101941 1!
+Colisão da partícula 0 com a parede 5 342.898059 1!
+Colisão da partícula 1 com a parede 0 122.110000 0!
+Colisão da partícula 1 com a parede 1 272.110000 1!
+Colisão da partícula 1 com a parede 2 222.778155 1!
+Colisão da partícula 1 com a parede 3 419.888155 1!
+Colisão da partícula 1 com a parede 4 130.601941 1!
+Colisão da partícula 1 com a parede 5 327.398059 1!
+5.000000
+Colisão da partícula 0 com a parede 0 137.600000 0!
+Colisão da partícula 0 com a parede 1 287.600000 1!
+Colisão da partícula 0 com a parede 2 209.947520 1!
+Colisão da partícula 0 com a parede 3 422.547520 1!
+Colisão da partícula 0 com a parede 4 115.111941 1!
+Colisão da partícula 0 com a parede 5 342.888059 1!
+Colisão da partícula 1 com a parede 0 122.100000 0!
+Colisão da partícula 1 com a parede 1 272.100000 1!
+Colisão da partícula 1 com a parede 2 217.697520 1!
+Colisão da partícula 1 com a parede 3 414.797520 1!
+Colisão da partícula 1 com a parede 4 130.611941 1!
+Colisão da partícula 1 com a parede 5 327.388059 1!
+5.125000
+Colisão da partícula 0 com a parede 0 137.590000 0!
+Colisão da partícula 0 com a parede 1 287.590000 1!
+Colisão da partícula 0 com a parede 2 204.742846 1!
+Colisão da partícula 0 com a parede 3 417.332846 1!
+Colisão da partícula 0 com a parede 4 115.121941 1!
+Colisão da partícula 0 com a parede 5 342.878059 1!
+Colisão da partícula 1 com a parede 0 122.090000 0!
+Colisão da partícula 1 com a parede 1 272.090000 1!
+Colisão da partícula 1 com a parede 2 212.492846 1!
+Colisão da partícula 1 com a parede 3 409.582846 1!
+Colisão da partícula 1 com a parede 4 130.621941 1!
+Colisão da partícula 1 com a parede 5 327.378059 1!
+5.250000
+Colisão da partícula 0 com a parede 0 137.580000 0!
+Colisão da partícula 0 com a parede 1 287.580000 1!
+Colisão da partícula 0 com a parede 2 199.414131 1!
+Colisão da partícula 0 com a parede 3 411.994131 1!
+Colisão da partícula 0 com a parede 4 115.131941 1!
+Colisão da partícula 0 com a parede 5 342.868059 1!
+Colisão da partícula 1 com a parede 0 122.080000 0!
+Colisão da partícula 1 com a parede 1 272.080000 1!
+Colisão da partícula 1 com a parede 2 207.164131 1!
+Colisão da partícula 1 com a parede 3 404.244131 1!
+Colisão da partícula 1 com a parede 4 130.631941 1!
+Colisão da partícula 1 com a parede 5 327.368059 1!
+5.375000
+Colisão da partícula 0 com a parede 0 137.570000 0!
+Colisão da partícula 0 com a parede 1 287.570000 1!
+Colisão da partícula 0 com a parede 2 193.961377 1!
+Colisão da partícula 0 com a parede 3 406.531377 1!
+Colisão da partícula 0 com a parede 4 115.141941 1!
+Colisão da partícula 0 com a parede 5 342.858059 1!
+Colisão da partícula 1 com a parede 0 122.070000 0!
+Colisão da partícula 1 com a parede 1 272.070000 1!
+Colisão da partícula 1 com a parede 2 201.711377 1!
+Colisão da partícula 1 com a parede 3 398.781377 1!
+Colisão da partícula 1 com a parede 4 130.641941 1!
+Colisão da partícula 1 com a parede 5 327.358059 1!
+5.500000
+Colisão da partícula 0 com a parede 0 137.560000 0!
+Colisão da partícula 0 com a parede 1 287.560000 1!
+Colisão da partícula 0 com a parede 2 188.384583 1!
+Colisão da partícula 0 com a parede 3 400.944583 1!
+Colisão da partícula 0 com a parede 4 115.151941 1!
+Colisão da partícula 0 com a parede 5 342.848059 1!
+Colisão da partícula 1 com a parede 0 122.060000 0!
+Colisão da partícula 1 com a parede 1 272.060000 1!
+Colisão da partícula 1 com a parede 2 196.134583 1!
+Colisão da partícula 1 com a parede 3 393.194583 1!
+Colisão da partícula 1 com a parede 4 130.651941 1!
+Colisão da partícula 1 com a parede 5 327.348059 1!
+5.625000
+Colisão da partícula 0 com a parede 0 137.550000 0!
+Colisão da partícula 0 com a parede 1 287.550000 1!
+Colisão da partícula 0 com a parede 2 182.683749 1!
+Colisão da partícula 0 com a parede 3 395.233749 1!
+Colisão da partícula 0 com a parede 4 115.161941 1!
+Colisão da partícula 0 com a parede 5 342.838059 1!
+Colisão da partícula 1 com a parede 0 122.050000 0!
+Colisão da partícula 1 com a parede 1 272.050000 1!
+Colisão da partícula 1 com a parede 2 190.433749 1!
+Colisão da partícula 1 com a parede 3 387.483749 1!
+Colisão da partícula 1 com a parede 4 130.661941 1!
+Colisão da partícula 1 com a parede 5 327.338059 1!
+5.750000
+Colisão da partícula 0 com a parede 0 137.540000 0!
+Colisão da partícula 0 com a parede 1 287.540000 1!
+Colisão da partícula 0 com a parede 2 176.858875 1!
+Colisão da partícula 0 com a parede 3 389.398875 1!
+Colisão da partícula 0 com a parede 4 115.171941 1!
+Colisão da partícula 0 com a parede 5 342.828059 1!
+Colisão da partícula 1 com a parede 0 122.040000 0!
+Colisão da partícula 1 com a parede 1 272.040000 1!
+Colisão da partícula 1 com a parede 2 184.608875 1!
+Colisão da partícula 1 com a parede 3 381.648875 1!
+Colisão da partícula 1 com a parede 4 130.671941 1!
+Colisão da partícula 1 com a parede 5 327.328059 1!
+5.875000
+Colisão da partícula 0 com a parede 0 137.530000 0!
+Colisão da partícula 0 com a parede 1 287.530000 1!
+Colisão da partícula 0 com a parede 2 170.909961 1!
+Colisão da partícula 0 com a parede 3 383.439961 1!
+Colisão da partícula 0 com a parede 4 115.181941 1!
+Colisão da partícula 0 com a parede 5 342.818059 1!
+Colisão da partícula 1 com a parede 0 122.030000 0!
+Colisão da partícula 1 com a parede 1 272.030000 1!
+Colisão da partícula 1 com a parede 2 178.659961 1!
+Colisão da partícula 1 com a parede 3 375.689961 1!
+Colisão da partícula 1 com a parede 4 130.681941 1!
+Colisão da partícula 1 com a parede 5 327.318059 1!
+6.000000
+Colisão da partícula 0 com a parede 0 137.520000 0!
+Colisão da partícula 0 com a parede 1 287.520000 1!
+Colisão da partícula 0 com a parede 2 164.837007 1!
+Colisão da partícula 0 com a parede 3 377.357007 1!
+Colisão da partícula 0 com a parede 4 115.191941 1!
+Colisão da partícula 0 com a parede 5 342.808059 1!
+Colisão da partícula 1 com a parede 0 122.020000 0!
+Colisão da partícula 1 com a parede 1 272.020000 1!
+Colisão da partícula 1 com a parede 2 172.587007 1!
+Colisão da partícula 1 com a parede 3 369.607007 1!
+Colisão da partícula 1 com a parede 4 130.691941 1!
+Colisão da partícula 1 com a parede 5 327.308059 1!
+6.125000
+Colisão da partícula 0 com a parede 0 137.510000 0!
+Colisão da partícula 0 com a parede 1 287.510000 1!
+Colisão da partícula 0 com a parede 2 158.640014 1!
+Colisão da partícula 0 com a parede 3 371.150014 1!
+Colisão da partícula 0 com a parede 4 115.201941 1!
+Colisão da partícula 0 com a parede 5 342.798059 1!
+Colisão da partícula 1 com a parede 0 122.010000 0!
+Colisão da partícula 1 com a parede 1 272.010000 1!
+Colisão da partícula 1 com a parede 2 166.390014 1!
+Colisão da partícula 1 com a parede 3 363.400014 1!
+Colisão da partícula 1 com a parede 4 130.701941 1!
+Colisão da partícula 1 com a parede 5 327.298059 1!
+6.250000
+Colisão da partícula 0 com a parede 0 137.500000 0!
+Colisão da partícula 0 com a parede 1 287.500000 1!
+Colisão da partícula 0 com a parede 2 152.318980 1!
+Colisão da partícula 0 com a parede 3 364.818980 1!
+Colisão da partícula 0 com a parede 4 115.211941 1!
+Colisão da partícula 0 com a parede 5 342.788059 1!
+Colisão da partícula 1 com a parede 0 122.000000 0!
+Colisão da partícula 1 com a parede 1 272.000000 1!
+Colisão da partícula 1 com a parede 2 160.068980 1!
+Colisão da partícula 1 com a parede 3 357.068980 1!
+Colisão da partícula 1 com a parede 4 130.711941 1!
+Colisão da partícula 1 com a parede 5 327.288059 1!
+6.375000
+Colisão da partícula 0 com a parede 0 137.490000 0!
+Colisão da partícula 0 com a parede 1 287.490000 1!
+Colisão da partícula 0 com a parede 2 145.873907 1!
+Colisão da partícula 0 com a parede 3 358.363907 1!
+Colisão da partícula 0 com a parede 4 115.221941 1!
+Colisão da partícula 0 com a parede 5 342.778059 1!
+Colisão da partícula 1 com a parede 0 121.990000 0!
+Colisão da partícula 1 com a parede 1 271.990000 1!
+Colisão da partícula 1 com a parede 2 153.623907 1!
+Colisão da partícula 1 com a parede 3 350.613907 1!
+Colisão da partícula 1 com a parede 4 130.721941 1!
+Colisão da partícula 1 com a parede 5 327.278059 1!
+6.500000
+Colisão da partícula 0 com a parede 0 137.480000 0!
+Colisão da partícula 0 com a parede 1 287.480000 1!
+Colisão da partícula 0 com a parede 2 139.304794 1!
+Colisão da partícula 0 com a parede 3 351.784794 1!
+Colisão da partícula 0 com a parede 4 115.231941 1!
+Colisão da partícula 0 com a parede 5 342.768059 1!
+Colisão da partícula 1 com a parede 0 121.980000 0!
+Colisão da partícula 1 com a parede 1 271.980000 1!
+Colisão da partícula 1 com a parede 2 147.054794 1!
+Colisão da partícula 1 com a parede 3 344.034794 1!
+Colisão da partícula 1 com a parede 4 130.731941 1!
+Colisão da partícula 1 com a parede 5 327.268059 1!
+6.625000
+Colisão da partícula 0 com a parede 0 137.470000 0!
+Colisão da partícula 0 com a parede 1 287.470000 1!
+Colisão da partícula 0 com a parede 2 132.611641 1!
+Colisão da partícula 0 com a parede 3 345.081641 1!
+Colisão da partícula 0 com a parede 4 115.241941 1!
+Colisão da partícula 0 com a parede 5 342.758059 1!
+Colisão da partícula 1 com a parede 0 121.970000 0!
+Colisão da partícula 1 com a parede 1 271.970000 1!
+Colisão da partícula 1 com a parede 2 140.361641 1!
+Colisão da partícula 1 com a parede 3 337.331641 1!
+Colisão da partícula 1 com a parede 4 130.741941 1!
+Colisão da partícula 1 com a parede 5 327.258059 1!
+6.750000
+Colisão da partícula 0 com a parede 0 137.460000 0!
+Colisão da partícula 0 com a parede 1 287.460000 1!
+Colisão da partícula 0 com a parede 2 125.794448 1!
+Colisão da partícula 0 com a parede 3 338.254448 1!
+Colisão da partícula 0 com a parede 4 115.251941 1!
+Colisão da partícula 0 com a parede 5 342.748059 1!
+Colisão da partícula 1 com a parede 0 121.960000 0!
+Colisão da partícula 1 com a parede 1 271.960000 1!
+Colisão da partícula 1 com a parede 2 133.544448 1!
+Colisão da partícula 1 com a parede 3 330.504448 1!
+Colisão da partícula 1 com a parede 4 130.751941 1!
+Colisão da partícula 1 com a parede 5 327.248059 1!
+6.875000
+Colisão da partícula 0 com a parede 0 137.450000 0!
+Colisão da partícula 0 com a parede 1 287.450000 1!
+Colisão da partícula 0 com a parede 2 118.853215 1!
+Colisão da partícula 0 com a parede 3 331.303215 1!
+Colisão da partícula 0 com a parede 4 115.261941 1!
+Colisão da partícula 0 com a parede 5 342.738059 1!
+Colisão da partícula 1 com a parede 0 121.950000 0!
+Colisão da partícula 1 com a parede 1 271.950000 1!
+Colisão da partícula 1 com a parede 2 126.603215 1!
+Colisão da partícula 1 com a parede 3 323.553215 1!
+Colisão da partícula 1 com a parede 4 130.761941 1!
+Colisão da partícula 1 com a parede 5 327.238059 1!
+7.000000
+Colisão da partícula 0 com a parede 0 137.440000 0!
+Colisão da partícula 0 com a parede 1 287.440000 1!
+Colisão da partícula 0 com a parede 2 111.787942 1!
+Colisão da partícula 0 com a parede 3 324.227942 1!
+Colisão da partícula 0 com a parede 4 115.271941 1!
+Colisão da partícula 0 com a parede 5 342.728059 1!
+Colisão da partícula 1 com a parede 0 121.940000 0!
+Colisão da partícula 1 com a parede 1 271.940000 1!
+Colisão da partícula 1 com a parede 2 119.537942 1!
+Colisão da partícula 1 com a parede 3 316.477942 1!
+Colisão da partícula 1 com a parede 4 130.771941 1!
+Colisão da partícula 1 com a parede 5 327.228059 1!
+7.125000
+Colisão da partícula 0 com a parede 0 137.430000 0!
+Colisão da partícula 0 com a parede 1 287.430000 1!
+Colisão da partícula 0 com a parede 2 104.598630 1!
+Colisão da partícula 0 com a parede 3 317.028630 1!
+Colisão da partícula 0 com a parede 4 115.281941 1!
+Colisão da partícula 0 com a parede 5 342.718059 1!
+Colisão da partícula 1 com a parede 0 121.930000 0!
+Colisão da partícula 1 com a parede 1 271.930000 1!
+Colisão da partícula 1 com a parede 2 112.348630 1!
+Colisão da partícula 1 com a parede 3 309.278630 1!
+Colisão da partícula 1 com a parede 4 130.781941 1!
+Colisão da partícula 1 com a parede 5 327.218059 1!
+7.250000
+Colisão da partícula 0 com a parede 0 137.420000 0!
+Colisão da partícula 0 com a parede 1 287.420000 1!
+Colisão da partícula 0 com a parede 2 97.285277 1!
+Colisão da partícula 0 com a parede 3 309.705277 1!
+Colisão da partícula 0 com a parede 4 115.291941 1!
+Colisão da partícula 0 com a parede 5 342.708059 1!
+Colisão da partícula 1 com a parede 0 121.920000 0!
+Colisão da partícula 1 com a parede 1 271.920000 1!
+Colisão da partícula 1 com a parede 2 105.035277 1!
+Colisão da partícula 1 com a parede 3 301.955277 1!
+Colisão da partícula 1 com a parede 4 130.791941 1!
+Colisão da partícula 1 com a parede 5 327.208059 1!
+7.375000
+Colisão da partícula 0 com a parede 0 137.410000 0!
+Colisão da partícula 0 com a parede 1 287.410000 1!
+Colisão da partícula 0 com a parede 2 89.847885 1!
+Colisão da partícula 0 com a parede 3 302.257885 1!
+Colisão da partícula 0 com a parede 4 115.301941 1!
+Colisão da partícula 0 com a parede 5 342.698059 1!
+Colisão da partícula 1 com a parede 0 121.910000 0!
+Colisão da partícula 1 com a parede 1 271.910000 1!
+Colisão da partícula 1 com a parede 2 97.597885 1!
+Colisão da partícula 1 com a parede 3 294.507885 1!
+Colisão da partícula 1 com a parede 4 130.801941 1!
+Colisão da partícula 1 com a parede 5 327.198059 1!
+7.500000
+Colisão da partícula 0 com a parede 0 137.400000 0!
+Colisão da partícula 0 com a parede 1 287.400000 1!
+Colisão da partícula 0 com a parede 2 82.286453 1!
+Colisão da partícula 0 com a parede 3 294.686453 1!
+Colisão da partícula 0 com a parede 4 115.311941 1!
+Colisão da partícula 0 com a parede 5 342.688059 1!
+Colisão da partícula 1 com a parede 0 121.900000 0!
+Colisão da partícula 1 com a parede 1 271.900000 1!
+Colisão da partícula 1 com a parede 2 90.036453 1!
+Colisão da partícula 1 com a parede 3 286.936453 1!
+Colisão da partícula 1 com a parede 4 130.811941 1!
+Colisão da partícula 1 com a parede 5 327.188059 1!
+7.625000
+Colisão da partícula 0 com a parede 0 137.390000 0!
+Colisão da partícula 0 com a parede 1 287.390000 1!
+Colisão da partícula 0 com a parede 2 74.600981 1!
+Colisão da partícula 0 com a parede 3 286.990981 1!
+Colisão da partícula 0 com a parede 4 115.321941 1!
+Colisão da partícula 0 com a parede 5 342.678059 1!
+Colisão da partícula 1 com a parede 0 121.890000 0!
+Colisão da partícula 1 com a parede 1 271.890000 1!
+Colisão da partícula 1 com a parede 2 82.350981 1!
+Colisão da partícula 1 com a parede 3 279.240981 1!
+Colisão da partícula 1 com a parede 4 130.821941 1!
+Colisão da partícula 1 com a parede 5 327.178059 1!
+7.750000
+Colisão da partícula 0 com a parede 0 137.380000 0!
+Colisão da partícula 0 com a parede 1 287.380000 1!
+Colisão da partícula 0 com a parede 2 66.791469 1!
+Colisão da partícula 0 com a parede 3 279.171469 1!
+Colisão da partícula 0 com a parede 4 115.331941 1!
+Colisão da partícula 0 com a parede 5 342.668059 1!
+Colisão da partícula 1 com a parede 0 121.880000 0!
+Colisão da partícula 1 com a parede 1 271.880000 1!
+Colisão da partícula 1 com a parede 2 74.541469 1!
+Colisão da partícula 1 com a parede 3 271.421469 1!
+Colisão da partícula 1 com a parede 4 130.831941 1!
+Colisão da partícula 1 com a parede 5 327.168059 1!
+7.875000
+Colisão da partícula 0 com a parede 0 137.370000 0!
+Colisão da partícula 0 com a parede 1 287.370000 1!
+Colisão da partícula 0 com a parede 2 58.857917 1!
+Colisão da partícula 0 com a parede 3 271.227917 1!
+Colisão da partícula 0 com a parede 4 115.341941 1!
+Colisão da partícula 0 com a parede 5 342.658059 1!
+Colisão da partícula 1 com a parede 0 121.870000 0!
+Colisão da partícula 1 com a parede 1 271.870000 1!
+Colisão da partícula 1 com a parede 2 66.607917 1!
+Colisão da partícula 1 com a parede 3 263.477917 1!
+Colisão da partícula 1 com a parede 4 130.841941 1!
+Colisão da partícula 1 com a parede 5 327.158059 1!
+8.000000
+Colisão da partícula 0 com a parede 0 137.360000 0!
+Colisão da partícula 0 com a parede 1 287.360000 1!
+Colisão da partícula 0 com a parede 2 50.800325 1!
+Colisão da partícula 0 com a parede 3 263.160325 1!
+Colisão da partícula 0 com a parede 4 115.351941 1!
+Colisão da partícula 0 com a parede 5 342.648059 1!
+Colisão da partícula 1 com a parede 0 121.860000 0!
+Colisão da partícula 1 com a parede 1 271.860000 1!
+Colisão da partícula 1 com a parede 2 58.550325 1!
+Colisão da partícula 1 com a parede 3 255.410325 1!
+Colisão da partícula 1 com a parede 4 130.851941 1!
+Colisão da partícula 1 com a parede 5 327.148059 1!
+8.125000
+Colisão da partícula 0 com a parede 0 137.350000 0!
+Colisão da partícula 0 com a parede 1 287.350000 1!
+Colisão da partícula 0 com a parede 2 42.618694 1!
+Colisão da partícula 0 com a parede 3 254.968694 1!
+Colisão da partícula 0 com a parede 4 115.361941 1!
+Colisão da partícula 0 com a parede 5 342.638059 1!
+Colisão da partícula 1 com a parede 0 121.850000 0!
+Colisão da partícula 1 com a parede 1 271.850000 1!
+Colisão da partícula 1 com a parede 2 50.368694 1!
+Colisão da partícula 1 com a parede 3 247.218694 1!
+Colisão da partícula 1 com a parede 4 130.861941 1!
+Colisão da partícula 1 com a parede 5 327.138059 1!
+8.250000
+Colisão da partícula 0 com a parede 0 137.340000 0!
+Colisão da partícula 0 com a parede 1 287.340000 1!
+Colisão da partícula 0 com a parede 2 34.313023 1!
+Colisão da partícula 0 com a parede 3 246.653023 1!
+Colisão da partícula 0 com a parede 4 115.371941 1!
+Colisão da partícula 0 com a parede 5 342.628059 1!
+Colisão da partícula 1 com a parede 0 121.840000 0!
+Colisão da partícula 1 com a parede 1 271.840000 1!
+Colisão da partícula 1 com a parede 2 42.063023 1!
+Colisão da partícula 1 com a parede 3 238.903023 1!
+Colisão da partícula 1 com a parede 4 130.871941 1!
+Colisão da partícula 1 com a parede 5 327.128059 1!
+8.375000
+Colisão da partícula 0 com a parede 0 137.330000 0!
+Colisão da partícula 0 com a parede 1 287.330000 1!
+Colisão da partícula 0 com a parede 2 25.883311 1!
+Colisão da partícula 0 com a parede 3 238.213311 1!
+Colisão da partícula 0 com a parede 4 115.381941 1!
+Colisão da partícula 0 com a parede 5 342.618059 1!
+Colisão da partícula 1 com a parede 0 121.830000 0!
+Colisão da partícula 1 com a parede 1 271.830000 1!
+Colisão da partícula 1 com a parede 2 33.633311 1!
+Colisão da partícula 1 com a parede 3 230.463311 1!
+Colisão da partícula 1 com a parede 4 130.881941 1!
+Colisão da partícula 1 com a parede 5 327.118059 1!
 8.500000
-Tentou corrigir!
-(-139.240016 94.928777)
-(2.051838 3.553887)
-(-137.541853 97.870080)
+Colisão da partícula 0 com a parede 0 137.320000 0!
+Colisão da partícula 0 com a parede 1 287.320000 1!
+Colisão da partícula 0 com a parede 2 17.329560 1!
+Colisão da partícula 0 com a parede 3 229.649560 1!
+Colisão da partícula 0 com a parede 4 115.391941 1!
+Colisão da partícula 0 com a parede 5 342.608059 1!
+Colisão da partícula 1 com a parede 0 121.820000 0!
+Colisão da partícula 1 com a parede 1 271.820000 1!
+Colisão da partícula 1 com a parede 2 25.079560 1!
+Colisão da partícula 1 com a parede 3 221.899560 1!
+Colisão da partícula 1 com a parede 4 130.891941 1!
+Colisão da partícula 1 com a parede 5 327.108059 1!
 8.625000
-Deu problema na Colisão com reta!
-Particula: (-137.541853,97.870080)
-Particula: (-154.000000,98.711941)
-
-
-(0.870008 1.506898)
-(-145.000000 95.524986)
-(-142.120008 100.513279)
-8.625000
-(3.292846 5.703377)
-(-137.999007 97.078266)
-(-137.541853 97.870080)
+Colisão da partícula 0 com a parede 0 137.310000 0!
+Colisão da partícula 0 com a parede 1 287.310000 1!
+Colisão da partícula 0 com a parede 2 8.651769 1!
+Colisão da partícula 0 com a parede 3 220.961769 1!
+Colisão da partícula 0 com a parede 4 115.401941 1!
+Colisão da partícula 0 com a parede 5 342.598059 1!
+Colisão da partícula 1 com a parede 0 121.810000 0!
+Colisão da partícula 1 com a parede 1 271.810000 1!
+Colisão da partícula 1 com a parede 2 16.401769 1!
+Colisão da partícula 1 com a parede 3 213.211769 1!
+Colisão da partícula 1 com a parede 4 130.901941 1!
+Colisão da partícula 1 com a parede 5 327.098059 1!
 8.750000
-(3.683650 6.380269)
-(-132.963699 95.073653)
-(-132.897349 95.188574)
+Colisão da partícula 0 com a parede 0 137.300000 0!
+Colisão da partícula 0 com a parede 1 287.300000 1!
+Colisão da partícula 0 com a parede 2 0.150062 0!
+Colisão da partícula 0 com a parede 3 212.149938 1!
+Colisão da partícula 0 com a parede 4 115.411941 1!
+Colisão da partícula 0 com a parede 5 342.588059 1!
+Colisão da partícula 1 com a parede 0 121.800000 0!
+Colisão da partícula 1 com a parede 1 271.800000 1!
+Colisão da partícula 1 com a parede 2 7.599938 1!
+Colisão da partícula 1 com a parede 3 204.399938 1!
+Colisão da partícula 1 com a parede 4 130.911941 1!
+Colisão da partícula 1 com a parede 5 327.088059 1!
 8.875000
-(3.683650 6.380269)
-(-128.252845 92.353840)
-(-128.186495 92.468761)
+Colisão da partícula 0 com a parede 0 137.290000 0!
+Colisão da partícula 0 com a parede 1 287.290000 1!
+Colisão da partícula 0 com a parede 2 9.075932 0!
+Colisão da partícula 0 com a parede 3 203.214068 1!
+Colisão da partícula 0 com a parede 4 115.421941 1!
+Colisão da partícula 0 com a parede 5 342.578059 1!
+Colisão da partícula 1 com a parede 0 121.790000 0!
+Colisão da partícula 1 com a parede 1 271.790000 1!
+Colisão da partícula 1 com a parede 2 1.325932 0!
+Colisão da partícula 1 com a parede 3 195.464068 1!
+Colisão da partícula 1 com a parede 4 130.921941 1!
+Colisão da partícula 1 com a parede 5 327.078059 1!
 9.000000
-(3.683650 6.380269)
-(-123.475640 89.595719)
-(-123.409290 89.710641)
+Colisão da partícula 0 com a parede 0 137.280000 0!
+Colisão da partícula 0 com a parede 1 287.280000 1!
+Colisão da partícula 0 com a parede 2 18.125843 0!
+Colisão da partícula 0 com a parede 3 194.154157 1!
+Colisão da partícula 0 com a parede 4 115.431941 1!
+Colisão da partícula 0 com a parede 5 342.568059 1!
+Colisão da partícula 1 com a parede 0 121.780000 0!
+Colisão da partícula 1 com a parede 1 271.780000 1!
+Colisão da partícula 1 com a parede 2 10.375843 0!
+Colisão da partícula 1 com a parede 3 186.404157 1!
+Colisão da partícula 1 com a parede 4 130.931941 1!
+Colisão da partícula 1 com a parede 5 327.068059 1!
 9.125000
-(3.683650 6.380269)
-(-118.632086 86.799292)
-(-118.565736 86.914213)
+Colisão da partícula 0 com a parede 0 137.270000 0!
+Colisão da partícula 0 com a parede 1 287.270000 1!
+Colisão da partícula 0 com a parede 2 27.299794 0!
+Colisão da partícula 0 com a parede 3 184.970206 1!
+Colisão da partícula 0 com a parede 4 115.441941 1!
+Colisão da partícula 0 com a parede 5 342.558059 1!
+Colisão da partícula 1 com a parede 0 121.770000 0!
+Colisão da partícula 1 com a parede 1 271.770000 1!
+Colisão da partícula 1 com a parede 2 19.549794 0!
+Colisão da partícula 1 com a parede 3 177.220206 1!
+Colisão da partícula 1 com a parede 4 130.941941 1!
+Colisão da partícula 1 com a parede 5 327.058059 1!
 9.250000
-(3.683650 6.380269)
-(-113.722181 83.964557)
-(-113.655831 84.079479)
+Colisão da partícula 0 com a parede 0 137.260000 0!
+Colisão da partícula 0 com a parede 1 287.260000 1!
+Colisão da partícula 0 com a parede 2 36.597784 0!
+Colisão da partícula 0 com a parede 3 175.662216 1!
+Colisão da partícula 0 com a parede 4 115.451941 1!
+Colisão da partícula 0 com a parede 5 342.548059 1!
+Colisão da partícula 1 com a parede 0 121.760000 0!
+Colisão da partícula 1 com a parede 1 271.760000 1!
+Colisão da partícula 1 com a parede 2 28.847784 0!
+Colisão da partícula 1 com a parede 3 167.912216 1!
+Colisão da partícula 1 com a parede 4 130.951941 1!
+Colisão da partícula 1 com a parede 5 327.048059 1!
 9.375000
-(3.683650 6.380269)
-(-108.745926 81.091515)
-(-108.679576 81.206437)
+Colisão da partícula 0 com a parede 0 137.250000 0!
+Colisão da partícula 0 com a parede 1 287.250000 1!
+Colisão da partícula 0 com a parede 2 46.019814 0!
+Colisão da partícula 0 com a parede 3 166.230186 1!
+Colisão da partícula 0 com a parede 4 115.461941 1!
+Colisão da partícula 0 com a parede 5 342.538059 1!
+Colisão da partícula 1 com a parede 0 121.750000 0!
+Colisão da partícula 1 com a parede 1 271.750000 1!
+Colisão da partícula 1 com a parede 2 38.269814 0!
+Colisão da partícula 1 com a parede 3 158.480186 1!
+Colisão da partícula 1 com a parede 4 130.961941 1!
+Colisão da partícula 1 com a parede 5 327.038059 1!
 9.500000
-(3.683650 6.380269)
-(-103.703321 78.180166)
-(-103.636971 78.295087)
+Colisão da partícula 0 com a parede 0 137.240000 0!
+Colisão da partícula 0 com a parede 1 287.240000 1!
+Colisão da partícula 0 com a parede 2 55.565884 0!
+Colisão da partícula 0 com a parede 3 156.674116 1!
+Colisão da partícula 0 com a parede 4 115.471941 1!
+Colisão da partícula 0 com a parede 5 342.528059 1!
+Colisão da partícula 1 com a parede 0 121.740000 0!
+Colisão da partícula 1 com a parede 1 271.740000 1!
+Colisão da partícula 1 com a parede 2 47.815884 0!
+Colisão da partícula 1 com a parede 3 148.924116 1!
+Colisão da partícula 1 com a parede 4 130.971941 1!
+Colisão da partícula 1 com a parede 5 327.028059 1!
 9.625000
-(3.683650 6.380269)
-(-98.594367 75.230509)
-(-98.528017 75.345431)
+Colisão da partícula 0 com a parede 0 137.230000 0!
+Colisão da partícula 0 com a parede 1 287.230000 1!
+Colisão da partícula 0 com a parede 2 65.235994 0!
+Colisão da partícula 0 com a parede 3 146.994006 1!
+Colisão da partícula 0 com a parede 4 115.481941 1!
+Colisão da partícula 0 com a parede 5 342.518059 1!
+Colisão da partícula 1 com a parede 0 121.730000 0!
+Colisão da partícula 1 com a parede 1 271.730000 1!
+Colisão da partícula 1 com a parede 2 57.485994 0!
+Colisão da partícula 1 com a parede 3 139.244006 1!
+Colisão da partícula 1 com a parede 4 130.981941 1!
+Colisão da partícula 1 com a parede 5 327.018059 1!
 9.750000
-(3.683650 6.380269)
-(-93.419062 72.242546)
-(-93.352712 72.357467)
+Colisão da partícula 0 com a parede 0 137.220000 0!
+Colisão da partícula 0 com a parede 1 287.220000 1!
+Colisão da partícula 0 com a parede 2 75.030144 0!
+Colisão da partícula 0 com a parede 3 137.189856 1!
+Colisão da partícula 0 com a parede 4 115.491941 1!
+Colisão da partícula 0 com a parede 5 342.508059 1!
+Colisão da partícula 1 com a parede 0 121.720000 0!
+Colisão da partícula 1 com a parede 1 271.720000 1!
+Colisão da partícula 1 com a parede 2 67.280144 0!
+Colisão da partícula 1 com a parede 3 129.439856 1!
+Colisão da partícula 1 com a parede 4 130.991941 1!
+Colisão da partícula 1 com a parede 5 327.008059 1!
 9.875000
-(3.683650 6.380269)
-(-88.177407 69.216275)
-(-88.111057 69.331196)
+Colisão da partícula 0 com a parede 0 137.210000 0!
+Colisão da partícula 0 com a parede 1 287.210000 1!
+Colisão da partícula 0 com a parede 2 84.948334 0!
+Colisão da partícula 0 com a parede 3 127.261666 1!
+Colisão da partícula 0 com a parede 4 115.501941 1!
+Colisão da partícula 0 com a parede 5 342.498059 1!
+Colisão da partícula 1 com a parede 0 121.710000 0!
+Colisão da partícula 1 com a parede 1 271.710000 1!
+Colisão da partícula 1 com a parede 2 77.198334 0!
+Colisão da partícula 1 com a parede 3 119.511666 1!
+Colisão da partícula 1 com a parede 4 131.001941 1!
+Colisão da partícula 1 com a parede 5 326.998059 1!
 10.000000
-(3.683650 6.380269)
-(-82.869402 66.151697)
-(-82.803052 66.266618)
-10.125000
-(3.683650 6.380269)
-(-77.495047 63.048811)
-(-77.428697 63.163733)
-10.250000
-(3.683650 6.380269)
-(-72.054342 59.907619)
-(-71.987992 60.022540)
-10.375000
-(3.683650 6.380269)
-(-66.547286 56.728119)
-(-66.480936 56.843041)
-10.500000
-(3.683650 6.380269)
-(-60.973881 53.510312)
-(-60.907531 53.625233)
-10.625000
-(3.683650 6.380269)
-(-55.334126 50.254198)
-(-55.267776 50.369119)
-10.750000
-(3.683650 6.380269)
-(-49.628020 46.959776)
-(-49.561670 47.074698)
-10.875000
-(3.684300 6.381395)
-(-43.854915 43.628173)
-(-43.789215 43.741969)
-11.000000
-(3.686417 6.385061)
-(-38.013993 40.260804)
-(-37.950409 40.370933)
-11.125000
-(3.685108 6.382794)
-(-32.110146 36.849193)
-(-32.045254 36.961590)
-11.250000
-(3.686252 6.384776)
-(-26.137496 33.403525)
-(-26.073748 33.513940)
-11.375000
-(3.685224 6.382994)
-(-20.100669 29.915786)
-(-20.035892 30.027982)
-11.500000
-(3.686142 6.384586)
-(-13.995544 26.393112)
-(-13.931687 26.503717)
-11.625000
-(3.685318 6.383157)
-(-7.825813 22.829112)
-(-7.761131 22.941145)
-11.750000
-(3.686055 6.384435)
-(-1.588170 19.229510)
-(-1.524225 19.340266)
-11.875000
-12.000000
-12.125000
-12.250000
-12.375000
-12.500000
+Colisão da partícula 0 com a parede 0 137.200000 0!
+Colisão da partícula 0 com a parede 1 287.200000 1!
+Colisão da partícula 0 com a parede 2 94.990563 0!
+Colisão da partícula 0 com a parede 3 117.209437 1!
+Colisão da partícula 0 com a parede 4 115.511941 1!
+Colisão da partícula 0 com a parede 5 342.488059 1!
+Colisão da partícula 1 com a parede 0 121.700000 0!
+Colisão da partícula 1 com a parede 1 271.700000 1!
+Colisão da partícula 1 com a parede 2 87.240563 0!
+Colisão da partícula 1 com a parede 3 109.459437 1!
+Colisão da partícula 1 com a parede 4 131.011941 1!
+Colisão da partícula 1 com a parede 5 326.988059 1!

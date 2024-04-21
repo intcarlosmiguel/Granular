@@ -2,6 +2,7 @@
     "files.associations": {
         "cmath": "c",
         "particle.h": "c",
-        "vector.h": "c"
+        "vector.h": "c",
+        "stdlib.h": "c"
     }
 }

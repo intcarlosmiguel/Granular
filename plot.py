@@ -54,6 +54,8 @@ while(t < dados["Tempo"].max()):
     plt.savefig(filename)
     filenames.append(filename)
     print(t,count)
+    if(t >20):
+        break
     t += dt
     count += 1
 
@@ -64,6 +66,6 @@ with imageio.get_writer('./frames/particula_movimento.gif', mode='I', duration=0
         image = imageio.imread(filename)
         writer.append_data(image)
         # Remover os arquivos de frame para limpeza
-        os.remove(filename)
+        #os.remove(filename)
 
 plt.close()

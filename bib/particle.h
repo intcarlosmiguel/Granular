@@ -43,7 +43,7 @@ bool acima(struct reta* RETA,struct VECTOR *posicao,struct VECTOR *CM);
 void init_coef(struct reta* RETA,double x1,double y1,double x2, double y2);
 
 double distance_ponto_ponto(struct VECTOR *posicao1,struct VECTOR *posicao2);
-void force_plano(struct particula *particula,struct reta *RETA);
-void force(struct particula *particula1, struct particula *particula2);
+bool force_plano(struct particula *particula,struct reta *RETA,struct VECTOR* CORRECAO);
+bool force(struct particula *particula1, struct particula *particula2,struct VECTOR * CORRECAO);
 #endif
 
