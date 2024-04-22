@@ -46,7 +46,7 @@ while(t < dados["Tempo"].max()):
         ax.add_artist(circulo)
     ax.axis('off')
     # Salvar o frame
-    ax.text(0.5, 0.95, f'Time: {t:.2f}', transform=ax.transAxes, fontsize=12,verticalalignment='center', bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
+    ax.text(0.5, 0.95, f'Time: {t:.4f}', transform=ax.transAxes, fontsize=12,verticalalignment='center', bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
     filename = f'./frames/images/frame_{count}.png'
     plt.gca().set_aspect('equal', adjustable='box')  # Assegurar proporção de aspecto igual
     plt.subplots_adjust(left=0.0, bottom=0.1, right=1.0, top=0.9)
@@ -54,7 +54,7 @@ while(t < dados["Tempo"].max()):
     plt.savefig(filename)
     filenames.append(filename)
     print(t,count)
-    if(t >20):
+    if(t > 50):
         break
     t += dt
     count += 1

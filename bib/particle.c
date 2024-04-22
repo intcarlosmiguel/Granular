@@ -130,15 +130,18 @@ bool force_plano(struct particula *particula,struct reta *RETA,struct VECTOR* CO
     double forca_tangencial = -particula->gamma *velocidade_tangencial;
     if(forca_tangencial < -atrito*forca_normal) forca_tangencial = -atrito*forca_normal;
     if(forca_tangencial > atrito*forca_normal) forca_tangencial = atrito*forca_normal;
+
     struct VECTOR vel;
     vel.x = 0;
     vel.y = 0;
-    struct VECTOR ROTATE = find_tangente(&particula->velocidade, &vel,&NORMAL);
-    mult(&ROTATE,forca_tangencial);
+    struct VECTOR TANGENCIAL;
+    TANGENCIAL.x = -NORMAL.y;
+    TANGENCIAL.y = NORMAL.x;
+    mult(&TANGENCIAL,forca_tangencial);
     mult(&NORMAL,forca_normal);
     
     //print_vector(&NORMAL);
-    sum(&NORMAL,&ROTATE,&FORCE);
+    sum(&NORMAL,&TANGENCIAL,&FORCE);
     sum(&FORCE,&particula->Force,&particula->Force);
     return false;
 }
@@ -166,7 +169,7 @@ bool force(struct particula *particula1, struct particula *particula2,struct VEC
 
         double gamma = (particula1->gamma > particula2->gamma)? particula1->gamma : particula2->gamma;
 
-        struct VECTOR VELOCIDADE,TANGENCIAL;
+        struct VECTOR VELOCIDADE;
         
         relative(&particula1->velocidade,&particula2->velocidade, &VELOCIDADE);
 
@@ -174,10 +177,10 @@ bool force(struct particula *particula1, struct particula *particula2,struct VEC
 
         copiar(&NORMAL,CORRECAO);
         //print(CORRECAO);
-        mult(CORRECAO,deformacao);
+        mult(CORRECAO,deformacao/2);
         double dv = -dot(&NORMAL,&VELOCIDADE);
 
-        double velocidade_tangencial = dot(&VELOCIDADE,&NORMAL) + particula1->raio*particula1->angular+particula2->raio*particula2->angular;
+        double velocidade_tangencial = -VELOCIDADE.x*NORMAL.x + NORMAL.y*VELOCIDADE.y  + particula1->raio*particula1->angular+particula2->raio*particula2->angular;
 
         double forca_normal = 4/3*sqrt(Raio_effetivo)*Young*sqrt(deformacao)*(deformacao + A*dv);
         if(forca_normal < 0) forca_normal = 0;
@@ -185,12 +188,14 @@ bool force(struct particula *particula1, struct particula *particula2,struct VEC
         double forca_tangencial = -gamma*velocidade_tangencial;
         if(forca_tangencial < -atrito*forca_normal) forca_tangencial = -atrito*forca_normal;
         if(forca_tangencial > atrito*forca_normal) forca_tangencial = atrito*forca_normal;
-
-        struct VECTOR ROTATE = find_tangente(&particula1->velocidade, &particula2->velocidade,&NORMAL);
+        struct VECTOR TANGENCIAL;
+        TANGENCIAL.x = -NORMAL.y;
+        TANGENCIAL.y = NORMAL.x;
+        //struct VECTOR ROTATE = find_tangente(&particula1->velocidade, &particula2->velocidade,&NORMAL);
         
-        mult(&ROTATE,forca_tangencial);
+        mult(&TANGENCIAL,forca_tangencial);
         mult(&NORMAL,forca_normal);
-        sum(&NORMAL,&ROTATE,&FORCE);
+        sum(&NORMAL,&TANGENCIAL,&FORCE);
     }
     sum(&FORCE,&particula1->Force,&particula1->Force);
     mult(&FORCE,-1.0);
