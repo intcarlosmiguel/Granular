@@ -9,6 +9,7 @@ struct particula{
     struct VECTOR posicao;
     struct VECTOR velocidade;
     struct VECTOR Force;
+    struct VECTOR aceleracao;
 
     double angular;
     double aceleracao_angular;
@@ -19,6 +20,8 @@ struct particula{
     double Young;
     double A;
     double gamma;
+    //double densidade;
+    //double poisson;
 };
 
 struct reta{

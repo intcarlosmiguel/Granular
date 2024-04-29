@@ -3,10 +3,10 @@
 
 void main(){
 
-    int colunas = 2;
-    int linhas = 2;
+    int colunas = 20;
+    int linhas = 20;
 
-    double tempo_total = 1000;
+    double tempo_total = 100;
     
     double angulo = 45;
 

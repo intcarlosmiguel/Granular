@@ -9,6 +9,7 @@ struct particula{
     struct VECTOR posicao;
     struct VECTOR velocidade;
     struct VECTOR Force;
+    struct VECTOR aceleracao;
 
     double angular;
     double aceleracao_angular;
@@ -19,9 +20,13 @@ struct particula{
     double Young;
     double A;
     double gamma;
+    //double densidade;
+    //double poisson;
+
 };
 
 struct reta{
+
     double a;
     double b;
     double c;
@@ -30,6 +35,7 @@ struct reta{
     double A;
     double atrito;
     double gamma;
+
 };
 
 void print_vector(struct VECTOR * vetor){
@@ -37,7 +43,6 @@ void print_vector(struct VECTOR * vetor){
 }
 
 double distance_ponto_ponto(struct VECTOR *posicao1,struct VECTOR *posicao2){
-
     return sqrt(pow(posicao1->x - posicao2->x,2)+pow(posicao1->y - posicao2->y,2)); 
 }
 
@@ -63,6 +68,7 @@ struct VECTOR find_tangente(struct VECTOR *velocidade1,struct VECTOR *velocidade
     free(M);
     if(b) return rot2;
     else return rot1;
+
 }
 
 void intersecao_circulo_reta(struct reta *RETA,struct particula *p,double *deformacao,struct VECTOR *DEFORMACAO,struct VECTOR *CORRECAO) {
@@ -75,7 +81,7 @@ void intersecao_circulo_reta(struct reta *RETA,struct particula *p,double *defor
     discriminante = pow(B,2) - 4*C;
     if(RETA->b ==0){
         discriminante = sqrt(pow(p->raio,2) - pow(-RETA->c - p->posicao.x,2));
-        printf("Teste: %f\n",p->posicao.y + sqrt(pow(p->raio,2) - pow(-RETA->c - p->posicao.x,2)));
+        //printf("Teste: %f\n",p->posicao.y + sqrt(pow(p->raio,2) - pow(-RETA->c - p->posicao.x,2)));
     }
     // Verificando as condições de interseção
     if(fabs(discriminante) < 0.000001) discriminante = 0;
@@ -127,15 +133,15 @@ bool force_plano(struct particula *particula,struct reta *RETA,struct VECTOR* CO
     FORCE.y = 0;
     double deformacao;
     double atrito = RETA->atrito;
-
+    CORRECAO->x = 0;
+    CORRECAO->y = 0;
     intersecao_circulo_reta(RETA,particula,&deformacao,&NORMAL,CORRECAO);
-    mult(&NORMAL,1/(particula->raio - deformacao));
+    mult(&NORMAL,1.1/(particula->raio - deformacao));
     
     double dv = -dot(&NORMAL,&particula->velocidade);
     double forca_normal = 4/3*sqrt(particula->raio)*particula->Young*sqrt(deformacao)*(deformacao + 0.5*(particula->A+RETA->A)*dv);
 
     double velocidade_tangencial = -particula->velocidade.x*NORMAL.y + NORMAL.x*particula->velocidade.y + particula->raio*particula->angular;
-    //printf("Normal: %f %f",dv,forca_normal);
     if(forca_normal < 0) forca_normal = 0;
 
     double forca_tangencial = -particula->gamma *velocidade_tangencial;
@@ -165,8 +171,9 @@ bool force(struct particula *particula1, struct particula *particula2,struct VEC
     double dist = norma(&NORMAL);
     double deformacao = particula1->raio + particula2->raio - dist;
     bool done = true;
-    if (deformacao > 0){
-
+    CORRECAO->x = 0;
+    CORRECAO->y = 0;
+    if (deformacao > 0.01){
         done = false;
         double Young = (particula1->Young*particula2->Young)/(particula1->Young+particula2->Young);
 
@@ -185,8 +192,9 @@ bool force(struct particula *particula1, struct particula *particula2,struct VEC
         mult(&NORMAL,1/dist);
 
         copiar(&NORMAL,CORRECAO);
+        mult(CORRECAO,deformacao/2*1.1);
+        //printf("Correcao: ");
         //print(CORRECAO);
-        mult(CORRECAO,deformacao/2);
         double dv = -dot(&NORMAL,&VELOCIDADE);
 
         double velocidade_tangencial = -VELOCIDADE.x*NORMAL.y + NORMAL.y*VELOCIDADE.x  + particula1->raio*particula1->angular+particula2->raio*particula2->angular;
@@ -210,20 +218,13 @@ bool force(struct particula *particula1, struct particula *particula2,struct VEC
     mult(&FORCE,-1.0);
     sum(&FORCE,&particula2->Force,&particula2->Force);
     return done;
+
 }
 
 double distance_ponto_reta(struct reta* RETA,struct VECTOR *posicao){
     return fabs(RETA->a*posicao->x + RETA->b*posicao->y + RETA->c )/sqrt(pow(RETA->a,2) + pow(RETA->b,2));
 }   
 
-double maximo(double a,double b){
-    if(a > b) return a;
-    else return b;
-}
-double minimo(double a,double b){
-    if(a > b) return b;
-    else return a;
-}
 
 bool entre(struct reta *RETA,struct VECTOR *point){
     struct VECTOR A, B, P, AP, AB;
@@ -253,14 +254,25 @@ bool entre(struct reta *RETA,struct VECTOR *point){
 }
 
 void reflect_reta(struct VECTOR *point, struct reta *RETA,struct VECTOR *reflect) {
-
-    printf("Refletiu!\n");
-    double distance = distance_ponto_reta(RETA,point);
-    double normalMagnitude = sqrt(RETA->a * RETA->a + RETA->b * RETA->b);
+    struct VECTOR NORMAL;
+    NORMAL.x = RETA->a;
+    NORMAL.y = RETA->b;
+    mult(&NORMAL,1/norma(&NORMAL));
+    if(RETA->fim.x == RETA->inicio.x){
+        reflect->x = 2*fabs(RETA->inicio.x - reflect->x)+reflect->x;
+        reflect->y = reflect->y;
+    }
+    else{
+        double d = dot(point,&NORMAL) - RETA->c;
+        mult(&NORMAL,-2*d);
+        sum(point,&NORMAL,reflect);
+    }
+    //double distance = distance_ponto_reta(RETA,point);
+    //double normalMagnitude = sqrt(RETA->a * RETA->a + RETA->b * RETA->b);
     
     // Calcula o ponto reflexo usando a fórmula: P' = P - 2 * distância * normal da reta
-    reflect->x = point->x - 2 * distance * (RETA->a / normalMagnitude);
-    reflect->y = point->y - 2 * distance * (RETA->a / normalMagnitude);
+    
+    
 }
 
 bool acima(struct reta* RETA,struct VECTOR *posicao,struct VECTOR *CM){

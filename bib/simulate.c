@@ -8,49 +8,53 @@ const double GRAVIDADE = 9.80665;
 
 void integracao(struct particula *p,struct VECTOR *anterior,double dt){
     double valor;
-    p->velocidade.x += dt*p->Force.x/p->massa;
-    p->velocidade.y += dt*p->Force.y/p->massa - GRAVIDADE*dt;
-    valor =(p->velocidade.x != 0)? 2*p->posicao.x - anterior->x + pow(dt,2)*p->Force.x/p->massa : p->posicao.x + pow(dt,2)*p->Force.x/p->massa;
+    p->Force.y = -p->massa*GRAVIDADE;
+    mult(&p->Force,1/p->massa);
+    p->velocidade.x += dt*(p->Force.x + p->aceleracao.x);
+    p->velocidade.y += dt*(p->Force.y + p->aceleracao.y);
+    valor = (p->velocidade.x != 0)? 2*p->posicao.x - anterior->x + pow(dt,2)*(p->Force.x+ p->aceleracao.x) : p->posicao.x + pow(dt,2)*(p->Force.x+ p->aceleracao.x);
 
     anterior->x = p->posicao.x;
     p->posicao.x = valor;
 
-    valor= (p->velocidade.y != 0)? 2*p->posicao.y - anterior->y + (p->Force.y/p->massa - GRAVIDADE)*pow(dt,2) : p->posicao.y + pow(dt,2)*p->Force.y/p->massa;
-
+    valor= (p->velocidade.y != 0)? 2*p->posicao.y - anterior->y + (p->Force.y + p->aceleracao.y)*pow(dt,2) : p->posicao.y + pow(dt,2)*(p->Force.y + p->aceleracao.y);
     anterior->y = p->posicao.y;
     p->posicao.y = valor;
 
+    copiar(&p->Force,&p->aceleracao);
     p->Force.x = 0;
     p->Force.y = 0;
 }
 
-bool corrige_ponto(struct particula* particulas,int N){
+bool corrige_ponto(struct particula* particulas,int N,struct VECTOR* CORRECOES){
+
     int i,j;
     bool done = true;
     struct VECTOR CORRECAO;
+    CORRECAO.x = 0;
+    CORRECAO.y = 0;
     for ( i = 0; i < N; i++){
-        if(particulas[i].posicao.y<-10) continue;
+        
+        if(particulas[i].posicao.y < -10) continue;
         for ( j = i+1; j < N; j++){
-            if(particulas[j].posicao.y<0) continue;
+            if(particulas[j].posicao.y < 0) continue;
             if(distance_ponto_ponto(&particulas[i].posicao,&particulas[j].posicao)< particulas[i].raio + particulas[j].raio){
-                print(&particulas[i].posicao);
-                print(&particulas[j].posicao);
+                //printf("Ponto - Ponto : %f\n",particulas[i].raio + particulas[j].raio -distance_ponto_ponto(&particulas[i].posicao,&particulas[j].posicao) );
                 done = done && force(&particulas[i],&particulas[j],&CORRECAO);
-                adicionar(&CORRECAO,0.01);
-                particulas[i].posicao.x = particulas[i].posicao.x +CORRECAO.x;
-                particulas[i].posicao.y = particulas[i].posicao.y +CORRECAO.y;
+                sum(&CORRECOES[i],&CORRECAO,&CORRECOES[i]);
                 mult(&CORRECAO,-1.0);
-                sum(&particulas[j].posicao,&CORRECAO,&particulas[j].posicao);
-                printf("Colisão da %d partícula com a partícula %d!\n",i,j);
-                print(&particulas[i].posicao);
-                print(&particulas[j].posicao);
-                printf("=====================================================\n");
+                sum(&CORRECOES[j],&CORRECAO,&CORRECOES[j]);
+                CORRECAO.x = 0;
+                CORRECAO.y = 0;
             }
         }
     }
     return done;
+
 }
-bool corrige_reta(struct particula* particulas,struct reta *retas,int N){
+
+bool corrige_reta(struct particula* particulas,struct reta *retas,int N,struct VECTOR* CORRECOES){
+    
     int i,j;
     bool done = true;
     struct VECTOR CORRECAO,NORMAL;
@@ -59,32 +63,28 @@ bool corrige_reta(struct particula* particulas,struct reta *retas,int N){
     CM.y = 910.0/2;
     CORRECAO.x = 0;
     CORRECAO.y = 0;
-
     for ( i = 0; i < N; i++){
         for ( j = 0; j < 6; j++){
-            if((distance_ponto_reta(&retas[j],&particulas[i].posicao) < particulas[i].raio) && (entre(&retas[j],&particulas[i].posicao))){
-                printf("Colisão da partícula %d com a parede %d %f %d!\n",i,j,distance_ponto_reta(&retas[j],&particulas[i].posicao),acima(&retas[j],&particulas[i].posicao,&CM));
-                if(!acima(&retas[j],&particulas[i].posicao,&CM)) reflect_reta(&particulas[i].posicao,&retas[j],&particulas[i].posicao);
-                if((distance_ponto_reta(&retas[j],&particulas[i].posicao) < particulas[i].raio)){
-                    printf("Colisão da partícula %d com a parede %d %f %d!\n",i,j,distance_ponto_reta(&retas[j],&particulas[i].posicao),acima(&retas[j],&particulas[i].posicao,&CM));
-                    NORMAL.x = retas[j].a;
-                    NORMAL.y = retas[j].b;
-                    mult(&NORMAL,1/norma(&NORMAL));
-
-                    done = done && force_plano(&particulas[i],&retas[j],&CORRECAO);
-                    particulas[i].posicao.x = CORRECAO.x + particulas[i].posicao.x;
-                    particulas[i].posicao.y = CORRECAO.y + particulas[i].posicao.y;
+            if(entre(&retas[j],&particulas[i].posicao)){
+                
+                if(!acima(&retas[j],&particulas[i].posicao,&CM)){
+                    //printf("%d\n",j);
+                    reflect_reta(&particulas[i].posicao,&retas[j],&particulas[i].posicao);
                 }
+                if((distance_ponto_reta(&retas[j],&particulas[i].posicao) < particulas[i].raio)){
+                    done = done && force_plano(&particulas[i],&retas[j],&CORRECAO);
+                    sum(&CORRECOES[i],&CORRECAO,&CORRECOES[i]);
+                }
+                //if(i == 0)print(&particulas[0].posicao);
             }
         }
     }
-
     return done;
 }
 
 void simulate(int colunas,int linhas,double tempo_total,double angulo){
     int N = colunas*linhas,i,j;
-    double dt = 0.125,t = 0;
+    double dt = 0.001,t = 0;
     double PI = (4.0 * atan(1.0));
     struct particula* particulas = (struct particula*) malloc(N*sizeof(struct particula));
     struct VECTOR* anteriores = (struct VECTOR*) malloc(N*sizeof(struct VECTOR));
@@ -114,18 +114,22 @@ void simulate(int colunas,int linhas,double tempo_total,double angulo){
     for ( i = 0; i < N; i++){
 
         particulas[i].A = 0.5;
-        particulas[i].aceleracao_angular = 0;
-        particulas[i].angular = 0;
-        particulas[i].atrito = 0;
-        particulas[i].gamma = 1;
-        particulas[i].massa = 1;
+        particulas[i].aceleracao_angular = 0.;
+        particulas[i].angular = 0.;
+        particulas[i].atrito = 0.;
+        particulas[i].gamma = 0.5;
+        particulas[i].massa = 0.1;
         particulas[i].raio = 7.5;
         particulas[i].Young = 1;
-
+        
         particulas[i].Force.x = 0;
         particulas[i].Force.y = 0;
+
         particulas[i].velocidade.x = 0;
         particulas[i].velocidade.y = 0;
+
+        particulas[i].aceleracao.x = 0;
+        particulas[i].aceleracao.y = 0;
         
     }
     int c = 0;
@@ -146,22 +150,35 @@ void simulate(int colunas,int linhas,double tempo_total,double angulo){
     }
     bool done = false;
     int count;
-
+    struct VECTOR* CORRECOES = (struct VECTOR*)malloc(N*sizeof(struct VECTOR));
     while (t < tempo_total){
+
+        
         count = 0;
         done = false;
-        for ( i = 0; i < N; i++) integracao(&particulas[i],&anteriores[i],dt);
+        
+        for ( i = 0; i < N; i++)if(particulas[i].posicao.y > -20) integracao(&particulas[i],&anteriores[i],dt);
         while (!done){
+            for ( i = 0; i < N; i++){
+                CORRECOES[i].x = 0;
+                CORRECOES[i].y = 0;
+            }
+            //print(&particulas[16].posicao);
             done = true;
-            done = done && corrige_ponto(particulas,N);
+            done = done && corrige_ponto(particulas,N,CORRECOES);
 
-            done = done && corrige_reta(particulas,retas,N);
+            done = done && corrige_reta(particulas,retas,N,CORRECOES);
+            
+            for ( i = 0; i < N; i++){
+                sum(&particulas[i].posicao,&CORRECOES[i],&particulas[i].posicao);
+            }
         }
         for ( i = 0; i < N; i++) if(particulas[i].posicao.y > -20) count++;
-        for ( i = 0; i < N; i++) fprintf(file,"%f\t%d\t%f\t%f\n",t,i,particulas[i].posicao.x,particulas[i].posicao.y);
+        for ( i = 0; i < N; i++) if(( (int)(t*1000)%100 == 0))fprintf(file,"%f\t%d\t%f\t%f\n",t,i,particulas[i].posicao.x,particulas[i].posicao.y);
+        //fprintf(file,"%f\t%d\t%f\t%f\n",t,1,particulas[1].posicao.x,particulas[1].posicao.y);
+        printf("%f\n",t*1000);
         t += dt;
         if(count == 0) break;
-        printf("%f\n",t);
     }
     free(particulas);
     free(anteriores);

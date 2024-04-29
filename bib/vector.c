@@ -1,4 +1,3 @@
-
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,7 +11,7 @@ struct VECTOR {
 
 
 void print(struct VECTOR *v){
-    printf("(%f,%f)\n",v->x,v->y);
+    printf("(%.20f,%.20f)\n",v->x,v->y);
 }
 
 double dot(struct VECTOR *v1,struct VECTOR *v2){
