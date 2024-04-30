@@ -71,7 +71,7 @@ struct VECTOR find_tangente(struct VECTOR *velocidade1,struct VECTOR *velocidade
 
 }
 
-void intersecao_circulo_reta(struct reta *RETA,struct particula *p,double *deformacao,struct VECTOR *DEFORMACAO,struct VECTOR *CORRECAO) {
+void intersecao_circulo_reta(struct reta *RETA,struct particula *p,double *deformacao,struct VECTOR *DEFORMACAO) {
     double discriminante;
     double x1, x2, y1, y2;
 
@@ -113,8 +113,6 @@ void intersecao_circulo_reta(struct reta *RETA,struct particula *p,double *defor
         *deformacao = p->raio - distance;
 
         relative(&p->posicao,&Central, DEFORMACAO);
-        CORRECAO->x += (DEFORMACAO->x)*(p->raio - distance)/distance*1.01;
-        CORRECAO->y += (DEFORMACAO->y)*(p->raio - distance)/distance*1.01;
     } else{
         printf("Deu problema na Colisão com reta!\n");
         printf("Particula: (%f,%f)\n",p->posicao.x,p->posicao.y);
@@ -127,16 +125,16 @@ void intersecao_circulo_reta(struct reta *RETA,struct particula *p,double *defor
     }
 }
 
-bool force_plano(struct particula *particula,struct reta *RETA,struct VECTOR* CORRECAO){
-    struct VECTOR NORMAL,FORCE;
-    FORCE.x = 0;
-    FORCE.y = 0;
+bool force_plano(struct particula *particula,struct reta *RETA,struct VECTOR* FORCE){
+    struct VECTOR NORMAL;
+    FORCE->x = 0;
+    FORCE->y = 0;
     double deformacao;
     double atrito = RETA->atrito;
-    CORRECAO->x = 0;
-    CORRECAO->y = 0;
-    intersecao_circulo_reta(RETA,particula,&deformacao,&NORMAL,CORRECAO);
-    mult(&NORMAL,1.1/(particula->raio - deformacao));
+
+    intersecao_circulo_reta(RETA,particula,&deformacao,&NORMAL);
+
+    mult(&NORMAL,1./(particula->raio - deformacao));
     
     double dv = -dot(&NORMAL,&particula->velocidade);
     double forca_normal = 4/3*sqrt(particula->raio)*particula->Young*sqrt(deformacao)*(deformacao + 0.5*(particula->A+RETA->A)*dv);
@@ -156,24 +154,21 @@ bool force_plano(struct particula *particula,struct reta *RETA,struct VECTOR* CO
     TANGENCIAL.y = NORMAL.x;
     mult(&TANGENCIAL,forca_tangencial);
     mult(&NORMAL,forca_normal);
-    sum(&NORMAL,&TANGENCIAL,&FORCE);
-    sum(&FORCE,&particula->Force,&particula->Force);
+    sum(&NORMAL,&TANGENCIAL,FORCE);
     return false;
 }
 
-bool force(struct particula *particula1, struct particula *particula2,struct VECTOR * CORRECAO){
+bool force(struct particula *particula1, struct particula *particula2,struct VECTOR * FORCE){
 
-    struct VECTOR NORMAL,FORCE;
-    FORCE.x = 0;
-    FORCE.y = 0;
+    struct VECTOR NORMAL;
+    FORCE->x = 0;
+    FORCE->y = 0;
 
     relative(&particula1->posicao,&particula2->posicao, &NORMAL);
     double dist = norma(&NORMAL);
     double deformacao = particula1->raio + particula2->raio - dist;
     bool done = true;
-    CORRECAO->x = 0;
-    CORRECAO->y = 0;
-    if (deformacao > 0.01){
+    if (deformacao > 0.001){
         done = false;
         double Young = (particula1->Young*particula2->Young)/(particula1->Young+particula2->Young);
 
@@ -188,13 +183,7 @@ bool force(struct particula *particula1, struct particula *particula2,struct VEC
         struct VECTOR VELOCIDADE;
         
         relative(&particula1->velocidade,&particula2->velocidade, &VELOCIDADE);
-
         mult(&NORMAL,1/dist);
-
-        copiar(&NORMAL,CORRECAO);
-        mult(CORRECAO,deformacao/2*1.1);
-        //printf("Correcao: ");
-        //print(CORRECAO);
         double dv = -dot(&NORMAL,&VELOCIDADE);
 
         double velocidade_tangencial = -VELOCIDADE.x*NORMAL.y + NORMAL.y*VELOCIDADE.x  + particula1->raio*particula1->angular+particula2->raio*particula2->angular;
@@ -208,15 +197,9 @@ bool force(struct particula *particula1, struct particula *particula2,struct VEC
         struct VECTOR TANGENCIAL;
         TANGENCIAL.x = -NORMAL.y;
         TANGENCIAL.y = NORMAL.x;
-        //struct VECTOR ROTATE = find_tangente(&particula1->velocidade, &particula2->velocidade,&NORMAL);
-        
-        mult(&TANGENCIAL,forca_tangencial);
-        mult(&NORMAL,forca_normal);
-        sum(&NORMAL,&TANGENCIAL,&FORCE);
+        FORCE->x = NORMAL.x*forca_normal + TANGENCIAL.x*forca_tangencial;
+        FORCE->y = NORMAL.y*forca_normal + TANGENCIAL.y*forca_tangencial;
     }
-    sum(&FORCE,&particula1->Force,&particula1->Force);
-    mult(&FORCE,-1.0);
-    sum(&FORCE,&particula2->Force,&particula2->Force);
     return done;
 
 }
