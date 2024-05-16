@@ -104,23 +104,23 @@ double distance_ponto_reta(struct reta* RETA,struct VECTOR *posicao){
     return fabs(RETA->a*posicao->x + RETA->b*posicao->y + RETA->c )/sqrt(pow(RETA->a,2) + pow(RETA->b,2));
 }   
 
-bool force_plano(struct particula *p,struct reta *RETA,struct VECTOR* FORCE){
+void force_plano(struct particula *p,struct reta *RETA,struct VECTOR* FORCE){
+    //printf("Entrou aqui!\n");
     struct VECTOR NORMAL;
     FORCE->x = 0;
     FORCE->y = 0;
-    double deformacao;
+    double deformacao,d;
     double atrito = RETA->atrito;
-
     intersecao_circulo_reta(RETA,p,&deformacao,&NORMAL);
-    //deformacao = p->raio - distance_ponto_reta(RETA,&p->posicao);
-    printf("%f\n",deformacao);
+    d = p->raio - distance_ponto_reta(RETA,&p->posicao);
+    //printf("%f %f\n",d,deformacao);
     if(deformacao > 1e-5){
 
-        
+        double atrito = (p->atrito < RETA->atrito)? p->atrito : RETA->atrito;
         mult(&NORMAL,1./(p->raio - deformacao));
         double dv = -dot(&NORMAL,&p->velocidade);
-        printf("Reta: %e %f\n",deformacao,dv);
-        print(&p->posicao);
+        //printf("Reta: %e %f\n",deformacao,dv);
+        //print(&p->posicao);
         double forca_normal = 4./3.*sqrt(p->raio)*p->Young*sqrt(deformacao)*(deformacao + 0.5*(p->A+RETA->A)*dv)/2;
 
         double velocidade_tangencial = -p->velocidade.x*NORMAL.y + NORMAL.x*p->velocidade.y + p->raio*p->angular;
@@ -136,10 +136,9 @@ bool force_plano(struct particula *p,struct reta *RETA,struct VECTOR* FORCE){
         FORCE->x = NORMAL.x*forca_normal + TANGENCIAL.x*forca_tangencial;
         FORCE->y = NORMAL.y*forca_normal + TANGENCIAL.y*forca_tangencial;
     }
-    return false;
 }
 
-bool force(struct particula *particula1, struct particula *particula2,struct VECTOR * FORCE){
+void force(struct particula *particula1, struct particula *particula2,struct VECTOR * FORCE){
 
     struct VECTOR NORMAL;
     FORCE->x = 0;
@@ -148,9 +147,7 @@ bool force(struct particula *particula1, struct particula *particula2,struct VEC
     relative(&particula1->posicao,&particula2->posicao, &NORMAL);
     double dist = norma(&NORMAL);
     double deformacao = particula1->raio + particula2->raio - dist;
-    bool done = true;
     if (deformacao > 1e-6){
-        done = false;
         double Young = (particula1->Young*particula2->Young)/(particula1->Young+particula2->Young);
 
         double Raio_effetivo =(particula1->raio*particula2->raio)/(particula1->raio+particula2->raio) ;
@@ -183,12 +180,10 @@ bool force(struct particula *particula1, struct particula *particula2,struct VEC
         FORCE->x = NORMAL.x*forca_normal + TANGENCIAL.x*forca_tangencial;
         FORCE->y = NORMAL.y*forca_normal + TANGENCIAL.y*forca_tangencial;
         if(FORCE->x != 0){
-            printf("Forca: %.20f %e %e\n",forca_normal,A,dv);
-            print(FORCE);
+            /* printf("Forca: %.20f %e %e\n",forca_normal,A,dv);
+            print(FORCE); */
         }
     }
-    return done;
-
 }
 
 

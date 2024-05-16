@@ -3,8 +3,8 @@
 
 void main(){
 
-    int colunas = 1;
-    int linhas = 2;
+    int colunas = 16;
+    int linhas = 32;
     double tempo_total = 2.;
     
     double angulo = 45;
