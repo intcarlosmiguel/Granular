@@ -4,6 +4,7 @@
         "particle.h": "c",
         "vector.h": "c",
         "stdlib.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "simulate.h": "c"
     }
 }

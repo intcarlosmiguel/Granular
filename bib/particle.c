@@ -46,31 +46,6 @@ double distance_ponto_ponto(struct VECTOR *posicao1,struct VECTOR *posicao2){
     return sqrt(pow(posicao1->x - posicao2->x,2)+pow(posicao1->y - posicao2->y,2)); 
 }
 
-struct VECTOR find_tangente(struct VECTOR *velocidade1,struct VECTOR *velocidade2,struct VECTOR *NORMAL){
-
-    struct VECTOR rot1,rot2;
-
-    double** M = (double**) malloc(2*sizeof(double*));
-    M[0] = (double*)calloc(2,sizeof(double));
-    M[1] = (double*)calloc(2,sizeof(double));
-
-    rotate(NORMAL,&rot1,0);
-    rotate(NORMAL,&rot2,1);
-
-    M[0][0] = dot(&rot1,velocidade1);
-    M[0][1] = dot(&rot2,velocidade1);
-    M[1][0] = dot(&rot1,velocidade2);
-    M[1][1] = dot(&rot2,velocidade2);
-    int a = (norma(velocidade1) > norma(velocidade2))? 0 : 1;
-    bool b = (M[a][0] < M[a][1]);
-    free(M[0]);
-    free(M[1]);
-    free(M);
-    if(b) return rot2;
-    else return rot1;
-
-}
-
 void intersecao_circulo_reta(struct reta *RETA,struct particula *p,double *deformacao,struct VECTOR *DEFORMACAO) {
     double discriminante;
     double x1, x2, y1, y2;
@@ -105,8 +80,8 @@ void intersecao_circulo_reta(struct reta *RETA,struct particula *p,double *defor
         Central.x = 0.5*(ponto1.x+ponto2.x);
         Central.y = 0.5*(ponto1.y+ponto2.y);
         if(distance_ponto_ponto(&Central,&p->posicao) > p->raio){
-            printf("%f\n",Central.x*RETA->a + Central.y*RETA->b + RETA->c);
             printf("Erro:  distancia maior que o raio!\n");
+            printf("%f\n",Central.x*RETA->a + Central.y*RETA->b + RETA->c);
             exit(0);
         }
         double distance = distance_ponto_ponto(&Central,&p->posicao);
@@ -125,36 +100,42 @@ void intersecao_circulo_reta(struct reta *RETA,struct particula *p,double *defor
     }
 }
 
-bool force_plano(struct particula *particula,struct reta *RETA,struct VECTOR* FORCE){
+double distance_ponto_reta(struct reta* RETA,struct VECTOR *posicao){
+    return fabs(RETA->a*posicao->x + RETA->b*posicao->y + RETA->c )/sqrt(pow(RETA->a,2) + pow(RETA->b,2));
+}   
+
+bool force_plano(struct particula *p,struct reta *RETA,struct VECTOR* FORCE){
     struct VECTOR NORMAL;
     FORCE->x = 0;
     FORCE->y = 0;
     double deformacao;
     double atrito = RETA->atrito;
 
-    intersecao_circulo_reta(RETA,particula,&deformacao,&NORMAL);
+    intersecao_circulo_reta(RETA,p,&deformacao,&NORMAL);
+    //deformacao = p->raio - distance_ponto_reta(RETA,&p->posicao);
+    printf("%f\n",deformacao);
+    if(deformacao > 1e-5){
 
-    mult(&NORMAL,1./(particula->raio - deformacao));
-    
-    double dv = -dot(&NORMAL,&particula->velocidade);
-    double forca_normal = 4/3*sqrt(particula->raio)*particula->Young*sqrt(deformacao)*(deformacao + 0.5*(particula->A+RETA->A)*dv);
+        
+        mult(&NORMAL,1./(p->raio - deformacao));
+        double dv = -dot(&NORMAL,&p->velocidade);
+        printf("Reta: %e %f\n",deformacao,dv);
+        print(&p->posicao);
+        double forca_normal = 4./3.*sqrt(p->raio)*p->Young*sqrt(deformacao)*(deformacao + 0.5*(p->A+RETA->A)*dv)/2;
 
-    double velocidade_tangencial = -particula->velocidade.x*NORMAL.y + NORMAL.x*particula->velocidade.y + particula->raio*particula->angular;
-    if(forca_normal < 0) forca_normal = 0;
+        double velocidade_tangencial = -p->velocidade.x*NORMAL.y + NORMAL.x*p->velocidade.y + p->raio*p->angular;
+        if(forca_normal < 0) forca_normal = 0;
 
-    double forca_tangencial = -particula->gamma *velocidade_tangencial;
-    if(forca_tangencial < -atrito*forca_normal) forca_tangencial = -atrito*forca_normal;
-    if(forca_tangencial > atrito*forca_normal) forca_tangencial = atrito*forca_normal;
-
-    struct VECTOR vel;
-    vel.x = 0;
-    vel.y = 0;
-    struct VECTOR TANGENCIAL;
-    TANGENCIAL.x = -NORMAL.y;
-    TANGENCIAL.y = NORMAL.x;
-    mult(&TANGENCIAL,forca_tangencial);
-    mult(&NORMAL,forca_normal);
-    sum(&NORMAL,&TANGENCIAL,FORCE);
+        double forca_tangencial = -p->gamma *velocidade_tangencial;
+        if(forca_tangencial < -atrito*forca_normal) forca_tangencial = -atrito*forca_normal;
+        if(forca_tangencial > atrito*forca_normal) forca_tangencial = atrito*forca_normal;
+        
+        struct VECTOR TANGENCIAL;
+        TANGENCIAL.x = -NORMAL.y;
+        TANGENCIAL.y = NORMAL.x;
+        FORCE->x = NORMAL.x*forca_normal + TANGENCIAL.x*forca_tangencial;
+        FORCE->y = NORMAL.y*forca_normal + TANGENCIAL.y*forca_tangencial;
+    }
     return false;
 }
 
@@ -168,7 +149,7 @@ bool force(struct particula *particula1, struct particula *particula2,struct VEC
     double dist = norma(&NORMAL);
     double deformacao = particula1->raio + particula2->raio - dist;
     bool done = true;
-    if (deformacao > 0.001){
+    if (deformacao > 1e-6){
         done = false;
         double Young = (particula1->Young*particula2->Young)/(particula1->Young+particula2->Young);
 
@@ -176,37 +157,40 @@ bool force(struct particula *particula1, struct particula *particula2,struct VEC
 
         double A = 0.5*(particula1->A + particula2->A);
 
-        double atrito = (particula1->atrito > particula2->atrito)? particula1->atrito : particula2->atrito;
+        double atrito = (particula1->atrito < particula2->atrito)? particula1->atrito : particula2->atrito;
 
-        double gamma = (particula1->gamma > particula2->gamma)? particula1->gamma : particula2->gamma;
+        double gamma = (particula1->gamma < particula2->gamma)? particula1->gamma : particula2->gamma;
 
         struct VECTOR VELOCIDADE;
         
         relative(&particula1->velocidade,&particula2->velocidade, &VELOCIDADE);
-        mult(&NORMAL,1/dist);
+        mult(&NORMAL,1./dist);
         double dv = -dot(&NORMAL,&VELOCIDADE);
 
-        double velocidade_tangencial = -VELOCIDADE.x*NORMAL.y + NORMAL.y*VELOCIDADE.x  + particula1->raio*particula1->angular+particula2->raio*particula2->angular;
+        double velocidade_tangencial = -VELOCIDADE.x*NORMAL.y + NORMAL.x*VELOCIDADE.y  + particula1->raio*particula1->angular - particula2->raio*particula2->angular;
 
-        double forca_normal = 4/3*sqrt(Raio_effetivo)*Young*sqrt(deformacao)*(deformacao + A*dv);
+        double forca_normal = 4.0/3.0*sqrt(Raio_effetivo)*Young*sqrt(deformacao)*(deformacao + A*dv);
         if(forca_normal < 0) forca_normal = 0;
 
         double forca_tangencial = -gamma*velocidade_tangencial;
+
         if(forca_tangencial < -atrito*forca_normal) forca_tangencial = -atrito*forca_normal;
         if(forca_tangencial > atrito*forca_normal) forca_tangencial = atrito*forca_normal;
+
         struct VECTOR TANGENCIAL;
         TANGENCIAL.x = -NORMAL.y;
         TANGENCIAL.y = NORMAL.x;
         FORCE->x = NORMAL.x*forca_normal + TANGENCIAL.x*forca_tangencial;
         FORCE->y = NORMAL.y*forca_normal + TANGENCIAL.y*forca_tangencial;
+        if(FORCE->x != 0){
+            printf("Forca: %.20f %e %e\n",forca_normal,A,dv);
+            print(FORCE);
+        }
     }
     return done;
 
 }
 
-double distance_ponto_reta(struct reta* RETA,struct VECTOR *posicao){
-    return fabs(RETA->a*posicao->x + RETA->b*posicao->y + RETA->c )/sqrt(pow(RETA->a,2) + pow(RETA->b,2));
-}   
 
 
 bool entre(struct reta *RETA,struct VECTOR *point){

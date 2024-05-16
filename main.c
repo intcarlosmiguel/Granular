@@ -3,13 +3,13 @@
 
 void main(){
 
-    int colunas = 20;
-    int linhas = 20;
-
-    double tempo_total = 7;
+    int colunas = 1;
+    int linhas = 2;
+    double tempo_total = 2.;
     
     double angulo = 45;
 
-    simulate(colunas,linhas,tempo_total,angulo);
+    double dt = 1e-6;
+    simulate(colunas,linhas,tempo_total,angulo,dt);
 
 }

@@ -1,12 +1,9 @@
-import os
-
-import imageio.v2 as imageio  # Importando a versão 2 especificamente
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 import pandas as pd
-from tqdm import tqdm
+from matplotlib.animation import FuncAnimation
 
-# Carregar dados do arquivo TXT
+# Carregar os dados do arquivo example.txt
 data = np.loadtxt("./example.txt").T
 df = {
     'Tempo': data[0],
@@ -15,52 +12,50 @@ df = {
     "y": data[3],
 }
 dados = pd.DataFrame(df)
-# Configurações iniciais do plot
-fig, ax = plt.subplots(figsize= (8,8))
-ax.set_xlim(-304,304)
-ax.set_ylim(0, 910)
 
-# Lista para armazenar os frames
-filenames = []
-dt = 0.125
-t = 0
-count = 0
-color = ["red","blue","green"]
+# Configurações iniciais do plot
+dt = 0.001
+color = ["red", "blue", "green"]
 m = 150/2
 angulo = 45
-with imageio.get_writer('./frames/particula_movimento.gif', mode='I', duration=0.05) as writer:
-    while(t <= dados["Tempo"].max()):
-        ax.clear()
-        ax.set_xlim(-324+m,324+m)
-        ax.set_ylim(0, 910)
+fig, ax = plt.subplots(figsize=(8, 8))
+ax.set_xlim(-324 + m, 324 + m)
+ax.set_ylim(0, 910)
+ax.axis('off')
 
-        ax.plot([0,0],[0,9.8], color='blue')
-        ax.plot([150,150],[0,9.8], color='blue')
+# Definir a proporção de aspecto igual e ajustável
+ax.set_aspect('equal', adjustable='datalim')
 
-        ax.plot([0,-154],[9.8,9.8 + 154*np.tan(np.pi*angulo/180)], color='blue')
-        ax.plot([150,304],[9.8,9.8 + 154*np.tan(np.pi*angulo/180)], color='blue')
-        ax.plot([-154,-154],[9.8 + 154*np.tan(np.pi*angulo/180),910], color='blue')
-        ax.plot([304,304],[9.8 + 154*np.tan(np.pi*angulo/180),910], color='blue')
+# Elementos estáticos
+lineas_estaticas = [
+    ax.plot([0, 0], [0, 98.], color='blue')[0],
+    ax.plot([150, 150], [0, 98.], color='blue')[0],
+    ax.plot([0, -154], [98., 98. + 154 * np.tan(np.pi * angulo / 180)], color='blue')[0],
+    ax.plot([150, 304], [98., 98. + 154 * np.tan(np.pi * angulo / 180)], color='blue')[0],
+    ax.plot([-154, -154], [98. + 154 * np.tan(np.pi * angulo / 180), 910], color='blue')[0],
+    ax.plot([304, 304], [98. + 154 * np.tan(np.pi * angulo / 180), 910], color='blue')[0]
+]
 
-        data_int_time = dados[dados["Tempo"] == t]
-        for particula in data_int_time[["id","x",'y']].values:
-            centro_do_circulo = (particula[1], particula[2])
-            circulo = plt.Circle(centro_do_circulo, 7.5, color=color[int(particula[0]%3)], fill=False, label='Círculo')
-            ax.add_artist(circulo)
-        ax.axis('off')
-        # Salvar o frame
-        ax.text(0.4, 0.95, f'Time: {t:.4f}', transform=ax.transAxes, fontsize=12,verticalalignment='center', bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
-        filename = f'./frames/images/frame_{count}.png'
-        plt.gca().set_aspect('equal', adjustable='box')  # Assegurar proporção de aspecto igual
-        plt.subplots_adjust(left=0.0, bottom=0.0, right=1.0, top=1.0)
-        plt.savefig(filename) 
-        image = imageio.imread(filename)
-        writer.append_data(image)
-        os.remove(filename)
-        if(t%10 == 0):
-            print(t,count)
-        t += dt
-        count += 1
+particulas = []  # Lista para armazenar os círculos das partículas
 
-plt.close()
+def init():
+    # Inicializa círculos das partículas para garantir que eles existam
+    for _ in range(len(dados['id'].unique())):
+        circulo = plt.Circle((0, 0), 7.5, color='blue', fill=False)  # Cores e outros detalhes podem ser ajustados
+        ax.add_artist(circulo)
+        particulas.append(circulo)
+    return particulas
 
+def update(t):
+    data_int_time = dados[dados["Tempo"] == t]
+    for particula, circ in zip(data_int_time[['id', 'x', 'y']].values, particulas):
+        circ.center = (particula[1]*1000, particula[2]*1000)
+        circ.set_color(color[int(particula[0] % 3)])
+    return particulas
+
+ani = FuncAnimation(fig, update, frames=np.arange(dados["Tempo"].min(), dados["Tempo"].max() + dt, dt), init_func=init, blit=True, repeat=False)
+
+# Aplicar tight_layout para garantir que a animação não fique distorcida
+plt.tight_layout()
+
+ani.save('animation.gif', writer='imagemagick', fps=200)
