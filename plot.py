@@ -1,7 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-from matplotlib.animation import FuncAnimation
+import imageio
+from PIL import Image
 
 # Carregar os dados do arquivo example.txt
 data = np.loadtxt("./example.txt").T
@@ -16,46 +17,52 @@ dados = pd.DataFrame(df)
 # Configurações iniciais do plot
 dt = 0.001
 color = ["red", "blue", "green"]
-m = 150/2
+m = 150 / 2
 angulo = 45
 fig, ax = plt.subplots(figsize=(8, 8))
-ax.set_xlim(-324 + m, 324 + m)
-ax.set_ylim(0, 910)
-ax.axis('off')
+
 
 # Definir a proporção de aspecto igual e ajustável
 ax.set_aspect('equal', adjustable='datalim')
-
+L1 = 3.5*7.5e-3*2
+L2 = 154.e-3
 # Elementos estáticos
 lineas_estaticas = [
     ax.plot([0, 0], [0, 98.], color='blue')[0],
-    ax.plot([150, 150], [0, 98.], color='blue')[0],
+    ax.plot([L1*1000, L1*1000], [0, 98.], color='blue')[0],
     ax.plot([0, -154], [98., 98. + 154 * np.tan(np.pi * angulo / 180)], color='blue')[0],
-    ax.plot([150, 304], [98., 98. + 154 * np.tan(np.pi * angulo / 180)], color='blue')[0],
+    ax.plot([L1*1000, (L1+L2)*1000], [98., 98. + 154 * np.tan(np.pi * angulo / 180)], color='blue')[0],
     ax.plot([-154, -154], [98. + 154 * np.tan(np.pi * angulo / 180), 910], color='blue')[0],
-    ax.plot([304, 304], [98. + 154 * np.tan(np.pi * angulo / 180), 910], color='blue')[0]
+    ax.plot([(L1+L2)*1000, (L1+L2)*1000], [98. + 154 * np.tan(np.pi * angulo / 180), 910], color='blue')[0]
 ]
+time = np.unique(df['Tempo'])
+# Criar o GIF processando um frame de cada vez
+with imageio.get_writer('animation.gif', mode='I', fps=200) as writer:
+    for t in time:
+        # Atualizar o gráfico para o tempo t
+        data_int_time = dados[dados["Tempo"] == t]
+        ax.clear()
+        ax.set_xlim(-324 + m, 324 + m)
+        ax.set_ylim(0, 910)
+        ax.axis('off')
+        # Replotar elementos estáticos
+        for linea in lineas_estaticas:
+            ax.add_line(linea)
 
-particulas = []  # Lista para armazenar os círculos das partículas
+        # Adicionar as partículas
+        for _, row in data_int_time.iterrows():
+            circ = plt.Circle((row['x'] * 1000, row['y'] * 1000), 7.5, color=color[int(row['id'] % 3)], fill=False)
+            ax.add_artist(circ)
 
-def init():
-    # Inicializa círculos das partículas para garantir que eles existam
-    for _ in range(len(dados['id'].unique())):
-        circulo = plt.Circle((0, 0), 7.5, color='blue', fill=False)  # Cores e outros detalhes podem ser ajustados
-        ax.add_artist(circulo)
-        particulas.append(circulo)
-    return particulas
+        # Salvar o frame atual como imagem
+        plt.savefig('temp_frame.png')
+        
+        # Adicionar a imagem ao GIF
+        with Image.open('temp_frame.png') as img:
+            writer.append_data(np.array(img))
+        
+        # Limpar o arquivo temporário
+        import os
+        os.remove('temp_frame.png')
 
-def update(t):
-    data_int_time = dados[dados["Tempo"] == t]
-    for particula, circ in zip(data_int_time[['id', 'x', 'y']].values, particulas):
-        circ.center = (particula[1]*1000, particula[2]*1000)
-        circ.set_color(color[int(particula[0] % 3)])
-    return particulas
-
-ani = FuncAnimation(fig, update, frames=np.arange(dados["Tempo"].min(), dados["Tempo"].max() + dt, dt), init_func=init, blit=True, repeat=False)
-
-# Aplicar tight_layout para garantir que a animação não fique distorcida
-plt.tight_layout()
-
-ani.save('animation.gif', writer='imagemagick', fps=200)
+print("GIF criado com sucesso!")
