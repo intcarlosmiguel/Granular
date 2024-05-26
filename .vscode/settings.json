@@ -5,6 +5,9 @@
         "vector.h": "c",
         "stdlib.h": "c",
         "stdio.h": "c",
-        "simulate.h": "c"
+        "simulate.h": "c",
+        "stdbool.h": "c",
+        "math.h": "c",
+        "mtwister.h": "c"
     }
 }

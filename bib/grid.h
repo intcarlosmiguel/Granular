@@ -2,16 +2,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include "particle.h"
-struct GRID{
-    int n_grids;
-    int** celulas;
-    int* ids;
-    int nx;
-    int ny;
-    double largura;
-    double x0,y0;
-    /* data */
-};
+#include "define.h"
 
 int X(struct GRID *grid,int celula){
     return (int) celula%grid->nx;
@@ -60,6 +51,7 @@ int get_vizinho(struct GRID *grid,int celula,int check){
             return celula;
             break;
     }
+    //return 0;
 } 
 
 void init_grid(struct GRID *grid,double x0,double y0,double x,double y,double largura){
