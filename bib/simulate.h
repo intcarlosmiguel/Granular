@@ -72,9 +72,9 @@ void simulate(int colunas,int linhas,double tempo_total,double angulo,double dt,
     double y0 = 98.0 + 154*tan(PI*angulo/180);
 
     //O4
-    init_coef(&retas[0],0,0,0,98.0/1000);
+    init_coef(&retas[0],0,0,0,90.0/1000);
     //O5
-    init_coef(&retas[1],L1,0,L1,98.0/1000);
+    init_coef(&retas[1],L1,0,L1,90.0/1000);
     //O0
     init_coef(&retas[2],0,98.0/1000,-154./1000,y0/1000);
     //O1
@@ -137,6 +137,7 @@ void simulate(int colunas,int linhas,double tempo_total,double angulo,double dt,
             if(particulas[i].posicao.y > 0.01){
                 integracao(&particulas[i],&anteriores[i],dt);
                 if(arquivo_criado)if((int)(t/dt)%5000 == 0)fprintf(file,"%.4f %d %f %f\n",t,i,particulas[i].posicao.x,particulas[i].posicao.y);
+                if(t > 0.14) if(t <0.15)if((int)(t/dt)%5000 == 0)if(i == 11)printf("%.4f %d %f,%f %f %f\n",t,i,particulas[i].posicao.x*1000,particulas[i].posicao.y*1000,particulas[i].velocidade.x,particulas[i].velocidade.y);
                 if(grid.ids[i] > 0 )atualiza_celula(&grid,&particulas[i].posicao,grid.ids[i],i);
                 
             }
@@ -153,6 +154,7 @@ void simulate(int colunas,int linhas,double tempo_total,double angulo,double dt,
         particulas = corrige_ponto(particulas,N,&grid,rotacao);
         particulas = corrige_reta(particulas,retas,N,rotacao);
         t += dt;
+        time = t;
         if(count == N) break;
         if(t - DT > 2) break;
     }

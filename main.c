@@ -5,10 +5,9 @@
 
 int main(int argc, char *argv[]){
     int colunas = 20;
-    int linhas = 23;
+    int linhas = 1;
     double tempo_total = 100.;
     
-
     double dt = 1e-6;
     double atrito_particulas = atof(argv[1]);
     double atrito_retas = atof(argv[2]);

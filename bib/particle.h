@@ -20,8 +20,8 @@ void intersecao_circulo_reta(struct reta *RETA,struct particula *p,double *defor
         //printf("Teste: %f\n",p->posicao.y + sqrt(pow(p->raio,2) - pow(-RETA->c - p->posicao.x,2)));
     }
     // Verificando as condições de interseção
-    if(fabs(discriminante) < 0.000001) discriminante = 0;
     if (discriminante >= 0) {
+        
         // Duas interseções
         struct VECTOR ponto1;
         struct VECTOR ponto2;
@@ -40,6 +40,7 @@ void intersecao_circulo_reta(struct reta *RETA,struct particula *p,double *defor
         }
         Central.x = 0.5*(ponto1.x+ponto2.x);
         Central.y = 0.5*(ponto1.y+ponto2.y);
+        if(check)print(&Central);
         if(distance_ponto_ponto(&Central,&p->posicao) > p->raio){
             printf("Erro:  distancia maior que o raio!\n");
             printf("%f\n",Central.x*RETA->a + Central.y*RETA->b + RETA->c);
@@ -70,6 +71,7 @@ double force_plano(struct particula *p,struct reta *RETA,struct VECTOR* FORCE){
     FORCE->y = 0;
     double deformacao;
     intersecao_circulo_reta(RETA,p,&deformacao,&NORMAL);
+    //if(check)printf("%f\n",deformacao);
     if(deformacao > 0){
 
         double atrito = (p->atrito < RETA->atrito)? p->atrito : RETA->atrito;

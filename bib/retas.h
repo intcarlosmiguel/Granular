@@ -19,9 +19,9 @@ void init_coef(struct reta* RETA,double x1,double y1,double x2, double y2){
 double distance_ponto_reta(struct reta* RETA,struct VECTOR *posicao){
     return fabs(RETA->a*posicao->x + RETA->b*posicao->y + RETA->c )/sqrt(pow(RETA->a,2) + pow(RETA->b,2));
 }
+
 bool entre(struct reta *RETA,struct particula *p){
 
-    if(RETA->b == 0) RETA->fim.y - p->posicao.y > 0;
 
     double alpha = RETA->fim.x - RETA->inicio.x;
     double beta = RETA->fim.y - RETA->inicio.y;
@@ -33,9 +33,9 @@ bool entre(struct reta *RETA,struct particula *p){
     double C = pow(a,2) + pow(b,2) - pow(p->raio,2);
     double discriminante = pow(B,2) - 4*A*C;
     if(discriminante < 0) return false;
-    double t1 = (-B + sqrt(discriminante))/A/2;
-    double t2 = (-B - sqrt(discriminante))/A/2;
+    double t1 = (-B + sqrt(discriminante))/(A*2);
+    double t2 = (-B - sqrt(discriminante))/(A*2);
     bool b1 = ((t1 <= 1) &&(t1 >= 0 ));
     bool b2 = ((t2 <= 1) &&(t2 >= 0 ));
-    return (b1 && b2);
+    return (b1 || b2);
 }

@@ -1,7 +1,8 @@
 #pragma once
 const double GRAVIDADE = 9.80665;
 double PI;
-
+double time;
+bool check = false;
 struct GRID{
     int n_grids;
     int** celulas;

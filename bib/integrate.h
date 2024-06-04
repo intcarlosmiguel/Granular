@@ -59,12 +59,14 @@ struct particula* calc_force_par(int site,struct particula* p,int N,struct GRID 
                         if(site >= vizinho) continue;
                         if(p[vizinho].posicao.y < 0.01) continue;
                         if(distance_ponto_ponto(&p[site].posicao,&p[vizinho].posicao)< p[site].raio + p[vizinho].raio){
-
                             force_rotacao = force(&p[site],&p[vizinho],&FORCE);
-
                             p[site].Force.x += FORCE.x;
                             p[site].Force.y += FORCE.y;
                             if(rotacao)p[site].Force_Rot += force_rotacao*p[site].raio;
+                            /* if(time > 0.14) if((site == 11) || (vizinho == 11)){
+                                printf("%d,%d :",site,vizinho);
+                                print(&FORCE);
+                            } */ 
 
                             p[vizinho].Force.x -= FORCE.x;
                             p[vizinho].Force.y -= FORCE.y;
@@ -93,11 +95,16 @@ struct particula* calc_force_reta(struct particula* particulas,int site,struct r
         if(entre(&retas[j],&particulas[site])){
             
             if(distance_ponto_reta(&retas[j],&particulas[site].posicao) < particulas[site].raio){
+                if(time > 0.14)if(site == 11) check = true;
                 force_rotacao = force_plano(&particulas[site],&retas[j],&FORCE);
                 particulas[site].Force.x += FORCE.x;
                 particulas[site].Force.y += FORCE.y;
+                if(time > 0.14)if(site == 11) print(&FORCE);
+                if(time > 0.14)if(site == 11) printf("%d %e\n",j,distance_ponto_reta(&retas[j],&particulas[site].posicao));
                 FORCE.x = 0;
                 FORCE.y = 0;
+                
+                if(time > 0.14)if(site == 11) check = false;
                 if(rotacao)particulas[site].Force_Rot += force_rotacao*particulas[site].raio;
                 force_rotacao = 0;
             }
