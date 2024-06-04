@@ -59,7 +59,7 @@ struct particula* corrige_reta(struct particula* particulas,struct reta *retas,i
     return particulas;
 }
 
-void simulate(int colunas,int linhas,double tempo_total,double angulo,double dt, double atrito_particulas, double atrito_retas,int seed,bool rotacao){
+void simulate(int colunas,int linhas,double tempo_total,double angulo,double dt, double atrito_particulas, double atrito_retas,double alpha,int seed,bool rotacao){
     PI = (4.0 * atan(1.0));
     int N = colunas*linhas,i,j;
     double t = 0.0;
@@ -67,7 +67,7 @@ void simulate(int colunas,int linhas,double tempo_total,double angulo,double dt,
     struct VECTOR* anteriores = (struct VECTOR*) malloc(N*sizeof(struct VECTOR));
 
     struct reta* retas = (struct reta*) malloc(6*sizeof(struct reta));
-    double L1 = 3.5*7.5e-3*2;
+    double L1 = alpha*7.5e-3*2;
     double L2 = 154.e-3;
     double y0 = 98.0 + 154*tan(PI*angulo/180);
 
@@ -113,7 +113,7 @@ void simulate(int colunas,int linhas,double tempo_total,double angulo,double dt,
 
     char string[200];
     char example[200];
-    sprintf(example, "./results/%d/example_%.2f_%.2f.dat",(int) angulo, atrito_particulas,atrito_retas);
+    sprintf(example, "./results/%d/example_%.2f_%.2f_%.2f.dat",(int) angulo,alpha, atrito_particulas,atrito_retas);
     FILE *file = fopen(example,"r");
     bool arquivo_criado = false;
     if (file != NULL) {
@@ -157,10 +157,13 @@ void simulate(int colunas,int linhas,double tempo_total,double angulo,double dt,
         if(t - DT > 2) break;
     }
     
-    if(count == N) sprintf(string, "./results/%d/resultado_%.2f_%.2f.dat",(int) angulo, atrito_particulas,atrito_retas);
+    if(count == N) sprintf(string, "./results/%d/resultado_%.2f_%.2f_%.2f.dat",(int) angulo,alpha, atrito_particulas,atrito_retas);
     else{
-        printf("%d\n",seed);
-        sprintf(string, "./results/%d/resultado_%.2f_%.2f_stop.dat",(int) angulo, atrito_particulas,atrito_retas);
+        double vel_total = 0;
+        for ( i = 0; i < N; i++)vel_total += sqrt(particulas[i].velocidade.x*particulas[i].velocidade.x + particulas[i].velocidade.y*particulas[i].velocidade.y);
+        
+        printf("%d %f %f\n",seed,vel_total,vel_total/N);
+        sprintf(string, "./results/%d/resultado_%.2f_%.2f_%.2f_stop.dat",(int) angulo,alpha, atrito_particulas,atrito_retas);
     }
     FILE *arquivo = fopen(string,"a");
     if (arquivo == NULL) {

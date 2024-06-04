@@ -90,7 +90,7 @@ struct particula* calc_force_reta(struct particula* particulas,int site,struct r
     FORCE.x = 0;
     FORCE.y = 0;
     for ( j = 0; j < 6; j++){
-        if(entre(&retas[j],&particulas[site].posicao)){
+        if(entre(&retas[j],&particulas[site])){
             
             if(distance_ponto_reta(&retas[j],&particulas[site].posicao) < particulas[site].raio){
                 force_rotacao = force_plano(&particulas[site],&retas[j],&FORCE);

@@ -6,7 +6,7 @@ from PIL import Image
 from tqdm import tqdm
 import os
 # Carregar os dados do arquivo example.txt
-data = np.loadtxt("./results/45/example_0.10_0.10.dat").T
+data = np.loadtxt("./results/15/example_2.50_0.30_0.30.dat").T
 df = {
     'Tempo': data[0],
     "id": data[1].astype(int),
@@ -19,7 +19,7 @@ dados = pd.DataFrame(df)
 dt = 0.001
 color = ["red", "blue", "green"]
 m = 150 / 2
-angulo = 45
+angulo = 15
 fig, ax = plt.subplots(figsize=(8, 8))
 
 
@@ -54,7 +54,6 @@ with imageio.get_writer('animation.gif', mode='I', fps=60) as writer:
         for _, row in data_int_time.iterrows():
             circ = plt.Circle((row['x'] * 1000, row['y'] * 1000), 7.5, color=color[int(row['id'] % 3)], fill=False)
             ax.add_artist(circ)
-
         # Salvar o frame atual como imagem
         plt.savefig('temp_frame.png')
         
