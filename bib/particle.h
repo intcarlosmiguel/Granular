@@ -9,47 +9,51 @@
 
 
 void intersecao_circulo_reta(struct reta *RETA,struct particula *p,double *deformacao,struct VECTOR *DEFORMACAO) {
-    double discriminante;
+    double alpha = RETA->fim.x - RETA->inicio.x;
+    double beta = RETA->fim.y - RETA->inicio.y;
 
-    // Calculando o discriminante
-    double B = 2*(RETA->a*(RETA->c - p->posicao.y) - p->posicao.x)/(1+pow(RETA->a,2));
-    double C = (pow(RETA->c - p->posicao.y,2) + pow(p->posicao.x,2) - pow(p->raio,2) )/(1+pow(RETA->a,2));
-    discriminante = pow(B,2) - 4*C;
-    if(RETA->b ==0){
-        discriminante = sqrt(pow(p->raio,2) - pow(-RETA->c - p->posicao.x,2));
-        //printf("Teste: %f\n",p->posicao.y + sqrt(pow(p->raio,2) - pow(-RETA->c - p->posicao.x,2)));
-    }
+    double a = RETA->inicio.x - p->posicao.x;
+    double b = RETA->inicio.y - p->posicao.y;
+    double A = pow(alpha,2) + pow(beta,2);
+    double B = 2*(alpha*a+beta*b);
+    double C = pow(a,2) + pow(b,2) - pow(p->raio,2);
+    double discriminante = pow(B,2) - 4*A*C;
     // Verificando as condições de interseção
     if (discriminante >= 0) {
         
         // Duas interseções
-        struct VECTOR ponto1;
-        struct VECTOR ponto2;
         struct VECTOR Central;
-        
-        ponto1.x = (-B + sqrt(discriminante))/2;
-        ponto2.x = (-B - sqrt(discriminante))/2;
-        ponto1.y = RETA->a * ponto1.x + RETA->c;
-        ponto2.y = RETA->a * ponto2.x + RETA->c;
 
-        if(RETA->b == 0){
-            ponto1.x = -RETA->c;
-            ponto2.x = -RETA->c;
-            ponto1.y = p->posicao.y + sqrt(pow(p->raio,2) - pow(-RETA->c - p->posicao.x,2));
-            ponto2.y = p->posicao.y - sqrt(pow(p->raio,2) - pow(-RETA->c - p->posicao.x,2));
+        double t1 = (-B + sqrt(discriminante))/(A*2);
+        double t2 = (-B - sqrt(discriminante))/(A*2);
+        bool b1 = ((t1 <= 1) &&(t1 >= 0 ));
+        bool b2 = ((t2 <= 1) &&(t2 >= 0 ));
+        if(b1+b2 == 2){
+            Central.x =0.5*( RETA->inicio.x + t1*(RETA->fim.x - RETA->inicio.x) +RETA->inicio.x + t2*(RETA->fim.x - RETA->inicio.x ));
+            Central.y =0.5*( RETA->inicio.y + t1*(RETA->fim.y - RETA->inicio.y) +RETA->inicio.y + t2*(RETA->fim.y - RETA->inicio.y ));
         }
-        Central.x = 0.5*(ponto1.x+ponto2.x);
-        Central.y = 0.5*(ponto1.y+ponto2.y);
-        if(check)print(&Central);
-        if(distance_ponto_ponto(&Central,&p->posicao) > p->raio){
-            printf("Erro:  distancia maior que o raio!\n");
-            printf("%f\n",Central.x*RETA->a + Central.y*RETA->b + RETA->c);
-            exit(0);
+        else{
+            double t = (b1)? t1: t2;
+            Central.x = RETA->inicio.x + t*(RETA->fim.x - RETA->inicio.x);
+            Central.y = RETA->inicio.y + t*(RETA->fim.y - RETA->inicio.y);
         }
         double distance = distance_ponto_ponto(&Central,&p->posicao);
-        *deformacao = p->raio - distance;
+        //if(check) printf("%f :",distance);
+        if(distance >= p->raio){
+            *deformacao = fabs(RETA->fim.y - Central.y);
+            DEFORMACAO->y =  (RETA->fim.y - Central.y)/ *deformacao;
+            DEFORMACAO->x = 0;
+            //mult(DEFORMACAO,1./ *deformacao);
+        }
+        else{
+            *deformacao = p->raio - distance;
+            relative(&p->posicao,&Central, DEFORMACAO);
+            mult(DEFORMACAO,1./(p->raio - *deformacao));
+        }
+        
 
-        relative(&p->posicao,&Central, DEFORMACAO);
+        //if(check)printf("%.30f %f\n",*deformacao,distance);
+        //if(check) print(DEFORMACAO);
     } else{
         printf("Deu problema na Colisão com reta!\n");
         printf("Particula: (%f,%f)\n",p->posicao.x,p->posicao.y);
@@ -64,18 +68,19 @@ void intersecao_circulo_reta(struct reta *RETA,struct particula *p,double *defor
 
 
 
-double force_plano(struct particula *p,struct reta *RETA,struct VECTOR* FORCE){
+double force_plano(struct particula *p,struct reta *RETA,struct VECTOR* FORCE,struct VECTOR* Central){
     //printf("Entrou aqui!\n");
     struct VECTOR NORMAL;
     FORCE->x = 0;
     FORCE->y = 0;
-    double deformacao;
-    intersecao_circulo_reta(RETA,p,&deformacao,&NORMAL);
-    //if(check)printf("%f\n",deformacao);
+    double deformacao = p->raio - distance_ponto_ponto(Central,&p->posicao);
+    relative(&p->posicao,Central, &NORMAL);
+    mult(&NORMAL,1./(p->raio - deformacao));
+    //printf("%f %f\n",distance_ponto_ponto(Central,&p->posicao),p->raio);
+    //exit(0);
     if(deformacao > 0){
 
         double atrito = (p->atrito < RETA->atrito)? p->atrito : RETA->atrito;
-        mult(&NORMAL,1./(p->raio - deformacao));
         double dv = -dot(&NORMAL,&p->velocidade);
         double forca_normal = 4./3.*sqrt(p->raio)*p->Young*sqrt(deformacao)*(deformacao + 0.5*(p->A+RETA->A)*dv)/2;
 
@@ -138,6 +143,7 @@ double force(struct particula *particula1, struct particula *particula2,struct V
         if(forca_tangencial > atrito*forca_normal) forca_tangencial = atrito*forca_normal;
 
         if (isnan(forca_normal) || isnan(forca_tangencial)) {
+            printf("%f\n",deformacao);
             printf("Erro: forca_normal ou forca_tangencial é NaN na função force\n");
             exit(1);
         }

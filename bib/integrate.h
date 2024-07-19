@@ -22,7 +22,7 @@ void integracao(struct particula *p,struct VECTOR *anterior,double dt){
     anterior->y = p->posicao.y;
     p->posicao.y = valor;
 
-    p->angular +=  (p->aceleracao_angular + p->Force_Rot/p->Inertia)*dt;
+    p->angular += (p->aceleracao_angular + p->Force_Rot/p->Inertia)*dt;
 
     p->aceleracao_angular = p->Force_Rot/p->Inertia;
 
@@ -63,10 +63,6 @@ struct particula* calc_force_par(int site,struct particula* p,int N,struct GRID 
                             p[site].Force.x += FORCE.x;
                             p[site].Force.y += FORCE.y;
                             if(rotacao)p[site].Force_Rot += force_rotacao*p[site].raio;
-                            /* if(time > 0.14) if((site == 11) || (vizinho == 11)){
-                                printf("%d,%d :",site,vizinho);
-                                print(&FORCE);
-                            } */ 
 
                             p[vizinho].Force.x -= FORCE.x;
                             p[vizinho].Force.y -= FORCE.y;
@@ -85,31 +81,48 @@ struct particula* calc_force_par(int site,struct particula* p,int N,struct GRID 
     }
     return p;
 }
-struct particula* calc_force_reta(struct particula* particulas,int site,struct reta *retas,int N,bool rotacao){
+struct particula* calc_force_reta(struct particula* particulas,int site,struct reta *retas,int N,bool rotacao,int n_retas){
     int j;
     double force_rotacao;
     struct VECTOR FORCE;
+    struct VECTOR Central;
     FORCE.x = 0;
     FORCE.y = 0;
-    for ( j = 0; j < 6; j++){
-        if(entre(&retas[j],&particulas[site])){
-            
-            if(distance_ponto_reta(&retas[j],&particulas[site].posicao) < particulas[site].raio){
-                if(time > 0.14)if(site == 11) check = true;
-                force_rotacao = force_plano(&particulas[site],&retas[j],&FORCE);
-                particulas[site].Force.x += FORCE.x;
-                particulas[site].Force.y += FORCE.y;
-                if(time > 0.14)if(site == 11) print(&FORCE);
-                if(time > 0.14)if(site == 11) printf("%d %e\n",j,distance_ponto_reta(&retas[j],&particulas[site].posicao));
-                FORCE.x = 0;
-                FORCE.y = 0;
-                
-                if(time > 0.14)if(site == 11) check = false;
-                if(rotacao)particulas[site].Force_Rot += force_rotacao*particulas[site].raio;
-                force_rotacao = 0;
-            }
+    for ( j = 0; j < n_retas; j++){
 
+        //entre(&retas[j],&particulas[site],t);
+        double a = particulas[site].posicao.x - retas[j].inicio.x;
+        double b = particulas[site].posicao.y - retas[j].inicio.y;
+        double c = retas[j].fim.x - retas[j].inicio.x;
+        double d = retas[j].fim.y - retas[j].inicio.y;
+
+        double ratio = (a*c+b*d)/(c*c+d*d);
+
+        if(ratio < 0.0){
+            Central.x = retas[j].inicio.x;
+            Central.y = retas[j].inicio.y;
         }
+        else{
+            if(ratio > 1.0){
+                Central.x = retas[j].fim.x;
+                Central.y = retas[j].fim.y;
+            }
+            else{
+                Central.x = c*ratio + retas[j].inicio.x;
+                Central.y = d*ratio + retas[j].inicio.y;
+            }
+        }
+
+        force_rotacao = force_plano(&particulas[site],&retas[j],&FORCE,&Central);
+
+        particulas[site].Force.x += FORCE.x;
+        particulas[site].Force.y += FORCE.y;
+
+        FORCE.x = 0;
+        FORCE.y = 0;
+        
+        if(rotacao)particulas[site].Force_Rot += force_rotacao*particulas[site].raio;
+        force_rotacao = 0;
     }
     return particulas;
 }

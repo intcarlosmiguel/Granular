@@ -1,4 +1,6 @@
 #pragma once
+const double PAR_RAIO = 0.0075;
+const int N_RETAS = 7;
 const double GRAVIDADE = 9.80665;
 double PI;
 double time;

@@ -18,7 +18,7 @@ void init_values(int N,int n_retas,double atrito_retas,double atrito_particulas,
         particulas[i].angular = 0.;
         particulas[i].atrito = atrito_particulas;
         particulas[i].gamma = 10.;
-        particulas[i].raio = 7.5e-3;
+        particulas[i].raio =0.0075;
         particulas[i].Young = 1e9;
         
         particulas[i].massa = 4./3.*PI*7860.*pow(particulas[i].raio,3.);

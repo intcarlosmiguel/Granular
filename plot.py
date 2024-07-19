@@ -6,7 +6,7 @@ from PIL import Image
 from tqdm import tqdm
 import os
 # Carregar os dados do arquivo example.txt
-data = np.loadtxt("./results/15/example_2.50_0.30_0.30.dat").T
+data = np.loadtxt("./test.txt").T
 df = {
     'Tempo': data[0],
     "id": data[1].astype(int),
@@ -19,8 +19,8 @@ dados = pd.DataFrame(df)
 dt = 0.001
 color = ["red", "blue", "green"]
 m = 150 / 2
-angulo = 15
-alpha = 2.5
+angulo = 60
+alpha = 3.
 fig, ax = plt.subplots(figsize=(8, 8))
 
 
@@ -40,7 +40,7 @@ lineas_estaticas = [
 time = np.unique(df['Tempo'])
 # Criar o GIF processando um frame de cada vez
 with imageio.get_writer('animation.gif', mode='I', fps=60) as writer:
-    for t in tqdm(time[time<10]):
+    for t in tqdm(time[time > 7]):
         # Atualizar o gráfico para o tempo t
         data_int_time = dados[dados["Tempo"] == t]
         ax.clear()
@@ -63,10 +63,6 @@ with imageio.get_writer('animation.gif', mode='I', fps=60) as writer:
         with Image.open(f'temp_frame_{t}.png') as img:
             writer.append_data(np.array(img))
         
-        # Limpar o arquivo temporário
-        if(t < 0.1):
-            os.remove(f'temp_frame_{t}.png')
-        if(t > 0.18):
-            os.remove(f'temp_frame_{t}.png')
+        os.remove(f'temp_frame_{t}.png')
 
 print("GIF criado com sucesso!")
