@@ -86,7 +86,7 @@ void simulate(int colunas,int linhas,double tempo_total,double angulo,double dt,
     init_coef(&retas[6],0,0.015,L1,0.015);
 
     struct GRID grid;
-    init_grid(&grid,-154./1000.,-2*0.0075,304./1000,910./1000,2*0.0075);
+    init_grid(&grid,-154./1000.,-2*0.0075,304./1000,2.,2*0.0075);
     grid.ids = (int*) calloc(N,sizeof(int));
 
     for (i = 0; i < N; i++)grid.ids[i] = -1;
@@ -141,16 +141,16 @@ void simulate(int colunas,int linhas,double tempo_total,double angulo,double dt,
     while (t < tempo_total){
         K = 0;
         if(((int)(t/dt)%10000 == 0) && (n_retas == 6)) {
-            sprintf(save_tempo, "./results/%d/velocidade/velocidade_%.2f_%.2f_%.2f_%f.dat",(int) angulo,alpha, atrito_particulas,atrito_retas,t);
+            sprintf(save_tempo, "./results/%d/velocidade/velocidade_%.2f_%.2f_%.2f_%.2f.dat",(int) angulo,alpha, atrito_particulas,atrito_retas,t);
             file_tempo = fopen(save_tempo,"a");
         }
         for ( i = 0; i < N; i++){
             if(particulas[i].posicao.y > 0.01){
                 integracao(&particulas[i],&anteriores[i],dt);
 
-                if(create_exemple)if((int)(t/dt)%5000 == 0) fprintf(file,"%.4f %d %f %f %d\n",t,i,particulas[i].posicao.x,particulas[i].posicao.y,seed);
+                if(create_exemple)if((int)(t/dt)%5000 == 0) fprintf(file,"%.4f %d %f %f\n",t,i,particulas[i].posicao.x,particulas[i].posicao.y);
 
-                if((int)(t/dt)%10000 == 0) if(n_retas == 6) fprintf(file_tempo,"%d %f %f %f\n",i,particulas[i].posicao.x,particulas[i].posicao.y,sqrt(particulas[i].posicao.x*particulas[i].posicao.x+ particulas[i].posicao.y*particulas[i].posicao.y));
+                if((int)(t/dt)%10000 == 0) if(n_retas == 6) fprintf(file_tempo,"%d %f %f %f %d\n",i,particulas[i].posicao.x,particulas[i].posicao.y,sqrt(particulas[i].posicao.x*particulas[i].posicao.x+ particulas[i].posicao.y*particulas[i].posicao.y),seed);
                 
                 //if((int)(t/dt)%5000 == 0)printf("%.4f %d %f %f %f %f\n",t,i,particulas[i].posicao.x,particulas[i].posicao.y,particulas[i].velocidade.x,particulas[i].velocidade.y);
                 if(grid.ids[i] > 0 )atualiza_celula(&grid,&particulas[i].posicao,grid.ids[i],i);
@@ -211,7 +211,6 @@ void simulate(int colunas,int linhas,double tempo_total,double angulo,double dt,
     free(resultados);
     free(particulas);
     free(anteriores);
-    fclose(arquivo);
     free(caiu);
     free(grid.ids);
     for ( i = 0; i < grid.n_grids; i++){
