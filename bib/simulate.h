@@ -140,7 +140,7 @@ void simulate(int colunas,int linhas,double tempo_total,double angulo,double dt,
     int n_retas = N_RETAS;
     while (t < tempo_total){
         K = 0;
-        if(((int)(t/dt)%10000 == 0) && (n_retas == 6)) {
+        if(((int)(t/dt)%10000 == 0) && (t>1)) {
             sprintf(save_tempo, "./results/%d/velocidade/velocidade_%.2f_%.2f_%.2f_%.2f.dat",(int) angulo,alpha, atrito_particulas,atrito_retas,t);
             file_tempo = fopen(save_tempo,"a");
         }
@@ -150,7 +150,7 @@ void simulate(int colunas,int linhas,double tempo_total,double angulo,double dt,
 
                 if(create_exemple)if((int)(t/dt)%5000 == 0) fprintf(file,"%.4f %d %f %f\n",t,i,particulas[i].posicao.x,particulas[i].posicao.y);
 
-                if((int)(t/dt)%10000 == 0) if(n_retas == 6) fprintf(file_tempo,"%d %f %f %f %d\n",i,particulas[i].posicao.x,particulas[i].posicao.y,sqrt(particulas[i].posicao.x*particulas[i].posicao.x+ particulas[i].posicao.y*particulas[i].posicao.y),seed);
+                if((int)(t/dt)%10000 == 0) if(t>1) fprintf(file_tempo,"%d %f %f %f %d\n",i,particulas[i].posicao.x,particulas[i].posicao.y,sqrt(particulas[i].posicao.x*particulas[i].posicao.x+ particulas[i].posicao.y*particulas[i].posicao.y),seed);
                 
                 //if((int)(t/dt)%5000 == 0)printf("%.4f %d %f %f %f %f\n",t,i,particulas[i].posicao.x,particulas[i].posicao.y,particulas[i].velocidade.x,particulas[i].velocidade.y);
                 if(grid.ids[i] > 0 )atualiza_celula(&grid,&particulas[i].posicao,grid.ids[i],i);
@@ -167,15 +167,15 @@ void simulate(int colunas,int linhas,double tempo_total,double angulo,double dt,
             }
         }
         
-        if((int)(t/dt)%10000 == 0)if(n_retas == 6) fclose(file_tempo);
+        if((int)(t/dt)%10000 == 0)if(t>1) fclose(file_tempo);
 
         particulas = corrige_ponto(particulas,N,&grid,rotacao);
         particulas = corrige_reta(particulas,retas,N,rotacao,n_retas);
-        if(time > 1) n_retas = 6;
+        if(time >= 1) n_retas = 6;
         t += dt;
         time = t;
         if(count == N) break;
-        if(t - DT > 2.) if(n_retas == 6) break;
+        if(t - DT > 2.) if(t>1) break;
         K = 0;
     }
     

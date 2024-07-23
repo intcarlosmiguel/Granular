@@ -6,7 +6,7 @@ from PIL import Image
 from tqdm import tqdm
 import os
 # Carregar os dados do arquivo example.txt
-data = np.loadtxt("./results/30/example_3.00_0.00_0.00.dat").T
+data = np.loadtxt("./results/30/example_3.00_0.00_0.00.dat",delimiter= ' ').T
 df = {
     'Tempo': data[0],
     "id": data[1].astype(int),
