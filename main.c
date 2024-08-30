@@ -20,10 +20,25 @@ int main(int argc, char *argv[]){
     seed += (int) atrito_particulas + atrito_retas;
     atrito_particulas /= 10;
     atrito_retas /=10;
-    omp_set_num_threads(7);
-    #pragma omp parallel for
+
+    char folder_name[500]; 
+    sprintf(folder_name, "./results");
+    create_directory_if_not_exists(folder_name);
+
+    sprintf(folder_name, "./results/%d", (int) angulo);
+    create_directory_if_not_exists(folder_name);
+
+    sprintf(folder_name, "./results/%d/velocidade", (int) angulo);
+    create_directory_if_not_exists(folder_name);
+
+    omp_set_num_threads(11);
+    int count = 0;
+    #pragma omp parallel for schedule(dynamic)
     for ( int i = 0; i < 200; i++){
         simulate(colunas,linhas,tempo_total,angulo,dt, atrito_particulas, atrito_retas,alpha,seed+i,rotacao);
+        count++;
+        printf("\e[1;1H\e[2J");
+        printf("%d/200\n",count);
     }
     
 

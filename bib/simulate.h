@@ -92,7 +92,6 @@ void simulate(int colunas,int linhas,double tempo_total,double angulo,double dt,
     for (i = 0; i < N; i++)grid.ids[i] = -1;
 
     init_values(N,7,atrito_retas,atrito_particulas,retas,particulas);
-
     init_genrand64(seed);
     
     int c = 0;
@@ -107,54 +106,32 @@ void simulate(int colunas,int linhas,double tempo_total,double angulo,double dt,
         }
         
     }
-    char folder_name[500]; 
-    sprintf(folder_name, "./results/%d", (int) angulo);
-    create_directory_if_not_exists(folder_name);
-
-    sprintf(folder_name, "./results/%d/velocidade", (int) angulo);
-    create_directory_if_not_exists(folder_name);
 
     char string[200];
     char example[200];
     char save_tempo[200];
-    sprintf(example, "./results/%d/example_%.2f_%.2f_%.2f.dat",(int) angulo,alpha, atrito_particulas,atrito_retas);
-    
-    FILE *file = fopen(example,"r");
-    bool create_exemple = false;
-    if(file) fclose(file);
-    else{
-        file = fopen(example, "w");
-        create_exemple = true;
-    }
+    //sprintf(example, "./results/%d/example_%.2f_%.2f_%.2f.dat",(int) angulo,alpha, atrito_particulas,atrito_retas);
 
     FILE *file_tempo;
     bool arquivo_criado = false;
-
 
     int count = 0;
     bool* caiu = (bool*) calloc(N,sizeof(bool));
     double** resultados = (double**) malloc(N*sizeof(double*));
     for ( i = 0; i < N; i++) resultados[i] = calloc(2,sizeof(double));
     double DT = 0;
-    double K = 0;
     int n_retas = N_RETAS;
+
+    sprintf(save_tempo, "./results/%d/velocidade/velocidade_%.2f_%.2f_%.2f_%d.dat",(int) angulo,alpha, atrito_particulas,atrito_retas,seed);
+    file_tempo = fopen(save_tempo,"a");
+
     while (t < tempo_total){
-        K = 0;
-        if(((int)(t/dt)%10000 == 0) && (t>1)) {
-            sprintf(save_tempo, "./results/%d/velocidade/velocidade_%.2f_%.2f_%.2f_%.2f.dat",(int) angulo,alpha, atrito_particulas,atrito_retas,t);
-            file_tempo = fopen(save_tempo,"a");
-        }
         for ( i = 0; i < N; i++){
             if(particulas[i].posicao.y > 0.01){
                 integracao(&particulas[i],&anteriores[i],dt);
-
-                if(create_exemple)if((int)(t/dt)%5000 == 0) fprintf(file,"%.4f %d %f %f\n",t,i,particulas[i].posicao.x,particulas[i].posicao.y);
-
-                if((int)(t/dt)%10000 == 0) if(t>1) fprintf(file_tempo,"%d %f %f %f %d\n",i,particulas[i].posicao.x,particulas[i].posicao.y,sqrt(particulas[i].posicao.x*particulas[i].posicao.x+ particulas[i].posicao.y*particulas[i].posicao.y),seed);
+                if((int)(t/dt)%10000 == 0) if(t>1) fprintf(file_tempo,"%d %f %f %f %.2f\n",i,particulas[i].posicao.x,particulas[i].posicao.y,sqrt(particulas[i].velocidade.x*particulas[i].velocidade.x+ particulas[i].velocidade.y*particulas[i].velocidade.y),t);
                 
-                //if((int)(t/dt)%5000 == 0)printf("%.4f %d %f %f %f %f\n",t,i,particulas[i].posicao.x,particulas[i].posicao.y,particulas[i].velocidade.x,particulas[i].velocidade.y);
                 if(grid.ids[i] > 0 )atualiza_celula(&grid,&particulas[i].posicao,grid.ids[i],i);
-                K += 0.5*(particulas[i].velocidade.x*particulas[i].velocidade.x + particulas[i].velocidade.y*particulas[i].velocidade.y);
             }
             else{
                 if(!caiu[i]){
@@ -167,8 +144,6 @@ void simulate(int colunas,int linhas,double tempo_total,double angulo,double dt,
             }
         }
         
-        if((int)(t/dt)%10000 == 0)if(t>1) fclose(file_tempo);
-
         particulas = corrige_ponto(particulas,N,&grid,rotacao);
         particulas = corrige_reta(particulas,retas,N,rotacao,n_retas);
         if(time >= 1) n_retas = 6;
@@ -176,7 +151,6 @@ void simulate(int colunas,int linhas,double tempo_total,double angulo,double dt,
         time = t;
         if(count == N) break;
         if(t - DT > 2.) if(t>1) break;
-        K = 0;
     }
     
     if(count == N) sprintf(string, "./results/%d/resultado_%.2f_%.2f_%.2f.dat",(int) angulo,alpha, atrito_particulas,atrito_retas);
@@ -217,5 +191,5 @@ void simulate(int colunas,int linhas,double tempo_total,double angulo,double dt,
         free(grid.celulas[i]);
     }
     free(grid.celulas);
-    if(create_exemple) fclose(file);
+    fclose(file_tempo);
 }
