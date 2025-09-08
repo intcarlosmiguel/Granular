@@ -1,2 +1,5 @@
 results/*
 !results/.gitignore
+venv/
+*.gif
+*.mp4

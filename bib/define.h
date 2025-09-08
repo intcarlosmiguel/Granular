@@ -5,6 +5,24 @@ const double GRAVIDADE = 9.80665;
 double PI;
 double time;
 bool check = false;
+
+struct CONFIG {
+    double dt;
+    int n_steps;
+    int n_particulas;
+    int n_retas;
+    bool gravidade;
+    bool rotacao;
+    double tempo_total;
+    int colunas;
+    int linhas;
+    double atrito_particulas;
+    double atrito_retas;
+    double abertura;
+    double gamma;
+    double angulo;
+}; 
+
 struct GRID{
     int n_grids;
     int** celulas;

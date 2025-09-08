@@ -1,5 +1,6 @@
 gcc main.c -o main -lm -O3 -fopenmp
-time ./main 5 5 60 22 0
-time ./main 5 5 30 82 0
-time ./main 5 5 45 99 0
- 
+seed=38
+for abertura in $(seq 45 5 60); do
+    ./main 1 1 60 $seed 0 50 $abertura
+    seed=$((seed + 500))
+done

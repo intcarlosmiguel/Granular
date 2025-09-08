@@ -4,9 +4,10 @@
 #include "particle.h"
 #include "define.h"
 #include "grid.h"
-void integracao(struct particula *p,struct VECTOR *anterior,double dt){
+void integracao(struct particula *p,struct VECTOR *anterior,double dt,double gamma){
     double valor;
-    p->Force.y += -p->massa*GRAVIDADE;
+    p->Force.y += -p->massa*GRAVIDADE*sin(gamma*PI/180);
+    //p->Force.x += -p->massa*GRAVIDADE*cos(gamma*PI/180);
     mult(&p->Force,1/p->massa);
 
     

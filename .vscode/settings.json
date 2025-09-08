@@ -10,6 +10,7 @@
         "math.h": "c",
         "mtwister.h": "c",
         "random": "c",
-        "*.tcc": "c"
+        "*.tcc": "c",
+        "omp.h": "c"
     }
 }

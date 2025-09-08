@@ -6,21 +6,21 @@ from PIL import Image
 from tqdm import tqdm
 import os
 # Carregar os dados do arquivo example.txt
-data = np.loadtxt("./results/30/example_3.00_0.00_0.00.dat",delimiter= ' ').T
+angulo = 60
+file = "image_6.00_0.20_0.20_50.00.dat"
+data = np.loadtxt(f"./results/{angulo}/{file}",delimiter= ' ').T
 df = {
-    'Tempo': data[0],
+    'Tempo': data[-1],
     "id": data[1].astype(int),
     "x": data[2],
     "y": data[3],
 }
 dados = pd.DataFrame(df)
-
 # Configurações iniciais do plot
-dt = 0.001
+dt = 0.0001
 color = ["red", "blue", "green"]
 m = 150 / 2
-angulo = 30
-alpha = 3.
+alpha = float(file.split('_')[1])
 fig, ax = plt.subplots(figsize=(8, 8))
 
 
@@ -38,13 +38,16 @@ lineas_estaticas = [
     ax.plot([(L1+L2)*1000, (L1+L2)*1000], [98. + 154 * np.tan(np.pi * angulo / 180), 910], color='blue')[0]
 ]
 time = np.unique(df['Tempo'])
+# Criar a pasta 'frames' se ela não existir
+if not os.path.exists('frames'):
+    os.makedirs('frames')
 # Criar o GIF processando um frame de cada vez
 with imageio.get_writer('animation.gif', mode='I', fps=60) as writer:
     for t in tqdm(time):
         # Atualizar o gráfico para o tempo t
         data_int_time = dados[dados["Tempo"] == t]
         ax.clear()
-        ax.set_xlim(-324 + m, 324 + m)
+        #ax.set_xlim(-324 + m, 324 + m)
         ax.set_ylim(0, 910)
         ax.axis('off')
         # Replotar elementos estáticos
@@ -57,12 +60,12 @@ with imageio.get_writer('animation.gif', mode='I', fps=60) as writer:
             ax.add_artist(circ)
         ax.text(0, 910, f'{t}', fontsize=12, ha='center', va='center')
         # Salvar o frame atual como imagem
-        plt.savefig(f'temp_frame_{t}.png')
-        
+        plt.savefig(f'./frames/temp_frame_{t}.png')
+
         # Adicionar a imagem ao GIF
-        with Image.open(f'temp_frame_{t}.png') as img:
+        with Image.open(f'./frames/temp_frame_{t}.png') as img:
             writer.append_data(np.array(img))
-        
-        os.remove(f'temp_frame_{t}.png')
+
+        os.remove(f'./frames/temp_frame_{t}.png')
 
 print("GIF criado com sucesso!")

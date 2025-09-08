@@ -59,17 +59,17 @@ struct particula* corrige_reta(struct particula* particulas,struct reta *retas,i
     return particulas;
 }
 
-void simulate(int colunas,int linhas,double tempo_total,double angulo,double dt, double atrito_particulas, double atrito_retas,double alpha,int seed,bool rotacao){
+void simulate(struct CONFIG config,int seed,bool check){
     PI = (4.0 * atan(1.0));
-    int N = colunas*linhas,i,j;
+    int N = config.colunas*config.linhas,i,j;
     double t = 0.0;
     struct particula* particulas = (struct particula*) malloc(N*sizeof(struct particula));
     struct VECTOR* anteriores = (struct VECTOR*) malloc(N*sizeof(struct VECTOR));
 
     struct reta* retas = (struct reta*) malloc(7*sizeof(struct reta));
-    double L1 = alpha*0.0075*2;
+    double L1 = config.abertura*0.0075*2;
     double L2 = 154.e-3;
-    double y0 = 98.0 + 154*tan(PI*angulo/180);
+    double y0 = 98.0 + 154*tan(PI*config.angulo/180);
 
     //O4
     init_coef(&retas[0],0,0,0,98.0/1000);
@@ -91,12 +91,12 @@ void simulate(int colunas,int linhas,double tempo_total,double angulo,double dt,
 
     for (i = 0; i < N; i++)grid.ids[i] = -1;
 
-    init_values(N,7,atrito_retas,atrito_particulas,retas,particulas);
+    init_values(N,7,config.atrito_retas,config.atrito_particulas,retas,particulas);
     init_genrand64(seed);
     
     int c = 0;
-    for ( i = 0; i < linhas; i++){
-        for ( j = 0; j < colunas; j++){
+    for ( i = 0; i < config.linhas; i++){
+        for ( j = 0; j < config.colunas; j++){
             particulas[c].posicao.x = (-154+9+7 + (2*7.5+0.2+genrand64_real1()/10)*j)/1000;
             particulas[c].posicao.y = (910/3+100 + (2*7.5+0.2+genrand64_real1()/10)*i)/1000;
             atualiza_celula(&grid,&particulas[c].posicao,grid.ids[c],c);
@@ -108,11 +108,15 @@ void simulate(int colunas,int linhas,double tempo_total,double angulo,double dt,
     }
 
     char string[200];
-    char example[200];
+    FILE *file_image;
+    if(check){
+        char example[200];
+        sprintf(example, "./results/%d/image_%.2f_%.2f_%.2f_%.2f.dat",(int) config.angulo,config.abertura, config.atrito_particulas,config.atrito_retas,config.gamma);
+        file_image = fopen(example,"a");
+    }
     char save_tempo[200];
     //sprintf(example, "./results/%d/example_%.2f_%.2f_%.2f.dat",(int) angulo,alpha, atrito_particulas,atrito_retas);
 
-    FILE *file_tempo;
     bool arquivo_criado = false;
 
     int count = 0;
@@ -122,14 +126,17 @@ void simulate(int colunas,int linhas,double tempo_total,double angulo,double dt,
     double DT = 0;
     int n_retas = N_RETAS;
 
-    sprintf(save_tempo, "./results/%d/velocidade/velocidade_%.2f_%.2f_%.2f_%d.dat",(int) angulo,alpha, atrito_particulas,atrito_retas,seed);
-    file_tempo = fopen(save_tempo,"a");
+    sprintf(save_tempo, "./results/%d/velocidade/velocidade_%.2f_%.2f_%.2f_%d.dat",(int) config.angulo,config.abertura, config.atrito_particulas,config.atrito_retas,seed);
 
-    while (t < tempo_total){
+    while (t < config.tempo_total){
         for ( i = 0; i < N; i++){
             if(particulas[i].posicao.y > 0.01){
-                integracao(&particulas[i],&anteriores[i],dt);
-                if((int)(t/dt)%10000 == 0) if(t>1) fprintf(file_tempo,"%d %f %f %f %.2f\n",i,particulas[i].posicao.x,particulas[i].posicao.y,sqrt(particulas[i].velocidade.x*particulas[i].velocidade.x+ particulas[i].velocidade.y*particulas[i].velocidade.y),t);
+                integracao(&particulas[i],&anteriores[i],config.dt,config.gamma);
+                if(check)
+                    if((int)(t/config.dt)%1000 == 0) 
+                        fprintf(file_image,"%d %f %f %f %.2e\n",i,particulas[i].posicao.x,particulas[i].posicao.y,sqrt(particulas[i].velocidade.x*particulas[i].velocidade.x+ particulas[i].velocidade.y*particulas[i].velocidade.y),t);
+
+                
                 
                 if(grid.ids[i] > 0 )atualiza_celula(&grid,&particulas[i].posicao,grid.ids[i],i);
             }
@@ -143,23 +150,27 @@ void simulate(int colunas,int linhas,double tempo_total,double angulo,double dt,
                 }
             }
         }
-        
-        particulas = corrige_ponto(particulas,N,&grid,rotacao);
-        particulas = corrige_reta(particulas,retas,N,rotacao,n_retas);
+
+        particulas = corrige_ponto(particulas,N,&grid,config.rotacao);
+        particulas = corrige_reta(particulas,retas,N,config.rotacao,n_retas);
         if(time >= 1) n_retas = 6;
-        t += dt;
+        t += config.dt;
         time = t;
+
         if(count == N) break;
-        if(t - DT > 2.) if(t>1) break;
+
+        if(t - DT > 2.) 
+            if(t>1) 
+                break;
     }
-    
-    if(count == N) sprintf(string, "./results/%d/resultado_%.2f_%.2f_%.2f.dat",(int) angulo,alpha, atrito_particulas,atrito_retas);
+
+    if(count == N) sprintf(string, "./results/%d/resultado_%.2f_%.2f_%.2f_%.2f.dat",(int) config.angulo,config.abertura, config.atrito_particulas,config.atrito_retas,config.gamma);
     else{
         double vel_total = 0;
         for ( i = 0; i < N; i++)vel_total += sqrt(particulas[i].velocidade.x*particulas[i].velocidade.x + particulas[i].velocidade.y*particulas[i].velocidade.y);
         
         //printf("%d %f %f\n",seed,vel_total,vel_total/N);
-        sprintf(string, "./results/%d/resultado_%.2f_%.2f_%.2f_stop.dat",(int) angulo,alpha, atrito_particulas,atrito_retas);
+        sprintf(string, "./results/%d/resultado_%.2f_%.2f_%.2f_%.2f_stop.dat",(int) config.angulo,config.abertura, config.atrito_particulas,config.atrito_retas,config.gamma);
     }
 
     FILE *arquivo = fopen(string,"a");
@@ -168,13 +179,13 @@ void simulate(int colunas,int linhas,double tempo_total,double angulo,double dt,
     }
 
     for ( i = 0; i < count; i++){
-        fprintf(arquivo,"%f %d\n",resultados[i][0],(int)resultados[i][1]);
+        fprintf(arquivo,"%e %d\n",resultados[i][0],(int)resultados[i][1]);
         free(resultados[i]);
     }
 
     fclose(arquivo);
 
-    sprintf(string, "./results/%d/is_stoped_%.2f_%.2f_%.2f.dat",(int) angulo,alpha, atrito_particulas,atrito_retas);
+    sprintf(string, "./results/%d/is_stoped_%.2f_%.2f_%.2f_%.2f.dat",(int) config.angulo,config.abertura, config.atrito_particulas,config.atrito_retas,config.gamma);
 
     arquivo = fopen(string,"a");
 
@@ -191,5 +202,7 @@ void simulate(int colunas,int linhas,double tempo_total,double angulo,double dt,
         free(grid.celulas[i]);
     }
     free(grid.celulas);
-    fclose(file_tempo);
+    if(check) fclose(file_image);
+    free(retas);
+
 }
